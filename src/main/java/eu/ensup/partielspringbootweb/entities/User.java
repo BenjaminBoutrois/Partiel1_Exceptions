@@ -1,5 +1,6 @@
 package eu.ensup.partielspringbootweb.entities;
 
+import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,7 +18,9 @@ import javax.persistence.Id;
 public class User extends Personne
 {
 	
+	@Column(name="login")
 	private String login;
+	@Column(name="password")
 	private String password;
 	private String profil;
 
