@@ -54,7 +54,10 @@ public class CourseServiceImpl  implements ICourseService{
 	@Override
 	public void updateCourse(Long id, Course course) {
 		// TODO Auto-generated method stub
-		courseRepo.save(course);	
+		Course c = courseRepo.findById(id).get();
+		c.setNumberHours(course.getNumberHours());
+		c.setThemeCourse(course.getThemeCourse());
+		courseRepo.save(c);	
 		
 	}
 
