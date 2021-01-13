@@ -1,7 +1,15 @@
 package eu.ensup.partielspringbootweb.entities;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 
 /**
  * Classe métier représentant un cours.
@@ -13,8 +21,15 @@ import javax.persistence.Id;
 public class Course
 {
 	@Id
+	 @GeneratedValue(strategy=GenerationType.IDENTITY)
+    private Long id;
 	private String themeCourse;
 	private int numberHours;
+	
+	@ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+	@JoinColumn
+	List<Student> students;
+
 
 	public Course()
 	{
@@ -26,6 +41,22 @@ public class Course
 		super();
 		this.themeCourse = themeCourse;
 		this.numberHours = numberHours;
+	}
+	
+	
+
+	/**
+	 * @return the id
+	 */
+	public Long getId() {
+		return id;
+	}
+
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getThemeCourse()

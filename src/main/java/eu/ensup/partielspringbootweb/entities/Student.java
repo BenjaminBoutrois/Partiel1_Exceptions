@@ -1,6 +1,7 @@
 package eu.ensup.partielspringbootweb.entities;
 
 import java.util.Collection;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.DiscriminatorValue;
@@ -9,7 +10,11 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.NamedAttributeNode;
+import javax.persistence.NamedEntityGraph;
+
 
 /**
  * Classe métier représentant un étudiant.
@@ -17,6 +22,9 @@ import javax.persistence.ManyToMany;
  *
  */
 @Entity
+@NamedEntityGraph(name = "Student.courses",
+attributeNodes = @NamedAttributeNode("courses")
+)
 @DiscriminatorValue("STUDENT")
 public class Student extends Personne
 {
@@ -26,12 +34,14 @@ public class Student extends Personne
 	 * mailAddress; private String address; private String numberPhone; private
 	 * String birthDate;
 	 */
-	@ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
-	Collection<Course> courses;
+	@ManyToMany(mappedBy = "students")
+	
+	List<Course> courses;
 
 	public Student()
 	{
 		super();
+		
 	}
 
 	
