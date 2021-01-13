@@ -22,7 +22,7 @@ public interface IStudentService
 	 * @return L'étudiant dont l'id correspond.
 	 * @throws ResourceNotFoundException 
 	 */
-	Student getStudent(int id) throws ResourceNotFoundException;
+	Student getStudent(Long id) throws ResourceNotFoundException;
 
 	/**
 	 * Retourne un étudiant en fonction de son adresse mail.
@@ -30,7 +30,7 @@ public interface IStudentService
 	 * @param mail L'adresse mail de l'étudiant.
 	 * @return L'étudiant dont l'adresse mail correspond.
 	 */
-	Student getStudentByMail(String mail);
+	Student getStudentByMail(String mail) throws ResourceNotFoundException;
 
 	/**
 	 * Retourne tous les étudiants de la base de données.
@@ -44,14 +44,14 @@ public interface IStudentService
 	 * 
 	 * @param id L'id de l'étudiant à supprimer.
 	 */
-	void deleteStudent(int id);
+	void deleteStudent(Long id);
 
 	/**
 	 * Met à jour les données d'un étudiant.
 	 * 
 	 * @param student      Un objet étudiant avec les nouvelles données.
 	 */
-	void updateStudent(Integer id,Student student);
+	void updateStudent(Long id,Student student);
 
 	/**
 	 * Recherche un ou plusieurs étudiants en fonction de leur données.

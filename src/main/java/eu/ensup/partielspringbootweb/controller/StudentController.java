@@ -20,8 +20,8 @@ import eu.ensup.partielspringbootweb.entities.Student;
 import eu.ensup.partielspringbootweb.service.IStudentService;
 
 @RestController
-@CrossOrigin
-@RequestMapping("/Student")
+//@CrossOrigin
+@RequestMapping("/student")
 public class StudentController {
 	
 	@Autowired
@@ -38,7 +38,7 @@ public class StudentController {
 		this.studentService = studentService;
 	}
 
-	@GetMapping("/getAll")
+	@GetMapping(value="/getAll",produces = {"application/json"})
 	public List<Student> getAllStudents(){
 		System.out.println("+++++++++++++++ GetAll +++++++++++++");
 		
@@ -46,10 +46,17 @@ public class StudentController {
 		
 	}
 	
-	@GetMapping("/detail/{id}")
-	public Student getStudentById(@PathVariable(value = "id") Integer id) throws ResourceNotFoundException {
+	@GetMapping(value="/detail/{id}")
+	public Student getStudentById(@PathVariable(value = "id") Long id) throws ResourceNotFoundException {
 		
 		return studentService.getStudent(id);
+	}
+	
+	
+	@GetMapping(value="/search/{mail}")
+	public Student getStudentByMail(@PathVariable(value = "mail") String mail) throws ResourceNotFoundException {
+		
+		return studentService.getStudentByMail(mail);
 	}
 	
 	
@@ -68,14 +75,14 @@ public class StudentController {
 	}
 	
 	@DeleteMapping("/delete/{id}")
-	public void deleteStudent(@PathVariable(value = "id") Integer id) {
+	public void deleteStudent(@PathVariable(value = "id") Long id) {
 		
 		studentService.deleteStudent(id);
 		
 	}
 	
 	@PutMapping("/update/{id}")
-	public void updateStudent(@PathVariable(value = "id") Integer id, @Valid @RequestBody Student student) throws ResourceNotFoundException {
+	public void updateStudent(@PathVariable(value = "id") Long id, @Valid @RequestBody Student student) throws ResourceNotFoundException {
 		
 		studentService.updateStudent(id, student);
 	}

@@ -29,8 +29,8 @@ public class UserServiceImpl  implements IUserService{
 	@Override
 	public User getUser(User user) {
 		// TODO Auto-generated method stub
-		//return userRepo.FindByLoginAndPassword(user.getLogin(), user.getPassword());
-		return null;
+		return userRepo.findByLoginAndPassword(user.getLogin(), user.getPassword());
+		//return null;
 	}
 
 }

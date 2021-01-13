@@ -31,7 +31,7 @@ public class StudentServiceImpl implements IStudentService {
 	}
 
 	@Override
-	public Student getStudent(int id) throws ResourceNotFoundException {
+	public Student getStudent(Long id) throws ResourceNotFoundException {
 		// TODO Auto-generated method stub
 		return (Student) studentRepo.findById(id)
 				.orElseThrow(()-> new ResourceNotFoundException(" Etudiant non trouvé "))
@@ -40,7 +40,8 @@ public class StudentServiceImpl implements IStudentService {
 
 	@Override
 	public Student getStudentByMail(String mail) {
-		return studentRepo.findByMail(mail);
+		return studentRepo.findByMail(mail)
+				;
 	}
 
 	@Override
@@ -50,7 +51,7 @@ public class StudentServiceImpl implements IStudentService {
 	}
 
 	@Override
-	public void deleteStudent(int id) {
+	public void deleteStudent(Long id) {
 		// TODO Auto-generated method stub
 		Student studDel = (Student) studentRepo.findById(id).get();
 		studentRepo.delete(studDel);
@@ -58,7 +59,7 @@ public class StudentServiceImpl implements IStudentService {
 	}
 
 	@Override
-	public void updateStudent(Integer id ,Student student) {
+	public void updateStudent(Long id ,Student student) {
 		
 		Student studentFound = studentRepo.findById(id).get();
 		studentFound.setAddress(student.getAddress());
