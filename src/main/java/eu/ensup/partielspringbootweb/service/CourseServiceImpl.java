@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
+import eu.ensup.partielspringbootweb.config.ResourceNotFoundException;
 import eu.ensup.partielspringbootweb.entities.Course;
 import eu.ensup.partielspringbootweb.repositories.CourseRepository;
 
@@ -26,16 +27,43 @@ public class CourseServiceImpl  implements ICourseService{
 		this.courseRepo = courseRepo;
 	}
 
-	@Override
-	public void associateCourse(ObjectNode courseAssociation) {
-		// TODO Auto-generated method stub
-		
-	}
+	
 
 	@Override
 	public List<Course> getAllCourses() {
-		// TODO Auto-generated method stub
 		return (List<Course>) courseRepo.findAll();
+	}
+
+
+
+	@Override
+	public void createCourse(Course course) {
+		courseRepo.save(course);		
+	}
+
+
+
+	@Override
+	public Course getCourse(Long id) throws ResourceNotFoundException {
+		// TODO Auto-generated method stub
+		return courseRepo.findById(id).get();
+	}
+
+
+
+	@Override
+	public void updateCourse(Long id, Course course) {
+		// TODO Auto-generated method stub
+		courseRepo.save(course);	
+		
+	}
+
+
+	@Override
+	public void deleteCourse(Long id) {
+		// TODO Auto-generated method stub
+		courseRepo.deleteById(id);	
+		
 	}
 
 }

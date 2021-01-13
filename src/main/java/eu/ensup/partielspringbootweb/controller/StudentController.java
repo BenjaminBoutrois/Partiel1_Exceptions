@@ -20,7 +20,7 @@ import eu.ensup.partielspringbootweb.entities.Student;
 import eu.ensup.partielspringbootweb.service.IStudentService;
 
 @RestController
-//@CrossOrigin
+@CrossOrigin
 @RequestMapping("/student")
 public class StudentController {
 	
