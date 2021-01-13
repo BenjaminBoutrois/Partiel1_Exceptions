@@ -13,26 +13,37 @@
 	<!-- Masthead Heading-->
 	<h1>Les informations de l'étudiant</h1>
 
-	<div class="table-responsive text-nowrap">
-		<!--Table-->
-		<%
-			Student student = (Student) session.getAttribute("student");
-		%>
-		Id        	 : <%=student.getId()%>
-		<br/><br/>
-		First Name	 : <%=student.getFirstName()%>
-		<br/><br/>
-		Last Name 	 : <%=student.getLastName()%>
-		<br/><br/>
-		Mail Address : <%=student.getMail()%>
-		<br/><br/>
-		Address		 : <%=student.getAddress()%>
-		<br/><br/>
-		Phone Number : <%=student.getPhone()%>
-		<br/><br/>
-		BirthDay	 : <%=student.getDob()%>
-
-	</div>
+	
+		<div class="row">
+			<div class="col-8">
+				<div class="card">
+		  			<div class="form-row">
+		  				<div style="padding: 20px" class="col-6">
+							<% Student student = (Student) session.getAttribute("student"); %>
+							<label style="font-weight: bold"> <i style="color: #1ABC9C" class="fas fa-user-circle"></i> Prénom</label><br>
+							<%=student.getFirstName()%>
+							<br/><br/>
+							<label style="font-weight: bold"> <i style="color: #1ABC9C" class="fas fa-home"></i> Adresse</label><br>
+							<%=student.getAddress()%>
+							<br/><br/>
+							<label style="font-weight: bold"> <i style="color: #1ABC9C" class="fas fa-at"></i> E-mail</label><br>
+							<%=student.getMail()%>
+						</div>
+						<div style="padding: 20px" class="col-6">
+							<label style="font-weight: bold"> <i style="color: #1ABC9C" class="fas fa-user-circle"></i> Nom</label><br>
+							<%=student.getLastName()%>
+							<br/><br/>
+							<label style="font-weight: bold"> <i style="color: #1ABC9C" class="fas fa-phone-alt"></i> Téléphone</label><br>
+							<%=student.getPhone()%>
+							<br/><br/>
+							<label style="font-weight: bold"> <i style="color: #1ABC9C" class="fas fa-birthday-cake"></i> Date de naissance</label><br>
+							<%=student.getDob()%>
+						</div>
+		  			</div>
+				</div>
+			</div>
+		</div>
+	
 
 	<!--Section: Live preview-->
 
@@ -43,6 +54,5 @@
 
 <!-- footer -->
 <script>
-
 </script>
 <%@include file="footer.jsp"%>
