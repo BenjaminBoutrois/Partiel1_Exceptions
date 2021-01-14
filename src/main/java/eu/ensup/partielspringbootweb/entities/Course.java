@@ -43,6 +43,14 @@ public class Course
 		this.numberHours = numberHours;
 	}
 	
+	public Course(String themeCourse, int numberHours, Long id)
+	{
+		super();
+		this.themeCourse = themeCourse;
+		this.numberHours = numberHours;
+		this.id = id;
+	}
+	
 	
 
 	/**

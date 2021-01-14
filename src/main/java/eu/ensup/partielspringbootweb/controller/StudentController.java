@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.RestController;
 import eu.ensup.partielspringbootweb.config.ResourceNotFoundException;
 import eu.ensup.partielspringbootweb.entities.Student;
 import eu.ensup.partielspringbootweb.service.IStudentService;
-import fr.sfconsulting.gestion_caces.entities.Stagiaire;
 
 @RestController
 @CrossOrigin
