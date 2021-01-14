@@ -41,9 +41,6 @@ class PartielspringbootwebApplicationTests {
 	}
 
 	
-	Student gio = new Student("SIMON","GIOVANNI","giovanni.simon@free.fr","Paris","0123456789",new Date());
-	Student ahmadou = new Student("LO","AHMADOU","lodou@free.fr","Montigny","1020304050",new Date());
-
 	
 	Course coursTest = new Course();
 	Course math = new Course("math",12);
@@ -56,8 +53,7 @@ class PartielspringbootwebApplicationTests {
 	public void testGetByIdStudent() throws ResourceNotFoundException {
 		
 		Student gio = new Student(1L, "SIMON","GIOVANNI","giovanni.simon@free.fr","Paris", "0123456789", new Date());
-		//studentService.getStudent(gio.getId());
-        //Mockito.verify(studentRepository, Mockito.times(1)).getOne(gio.getId());	
+	
 		Mockito.when(studentRepository.getOne(1L)).thenReturn(gio);
 		Student  result = studentService.getStudent(1L);
 		if(result != null) {
@@ -71,12 +67,13 @@ class PartielspringbootwebApplicationTests {
 	public void testDeleteStudent() throws ResourceNotFoundException {
 		
 		Student gio = new Student(1L, "SIMON","GIOVANNI","giovanni.simon@free.fr","Paris", "0123456789", new Date());
+		studentRepository.delete(gio);
 		studentService.deleteStudent(gio.getId());
         Mockito.verify(studentRepository, Mockito.times(1)).delete(gio);
 	}	
 	
 	@Test
-	public void saveToDo(){
+	public void saveStudent(){
 		Student gio = new Student(1L, "SIMON","TIMA","giovanni.simon@free.fr","Paris", "0123456789", new Date());
 		when(studentRepository.save(gio)).thenReturn(gio);
 		Student result = studentService.createStudent(gio);
@@ -85,15 +82,26 @@ class PartielspringbootwebApplicationTests {
 	}
 	
 	@Test
-	public void testGetAllToDo(){
-		List<Student> toDoList = new ArrayList<Student>();
+	public void testGetAllStudent(){
+		List<Student> list = new ArrayList<Student>();
 	
-		toDoList.add(new Student(1L, "SIMON","TIMA","giovanni.simon@free.fr","Paris", "0123456789", new Date()));
-		toDoList.add(new Student(2L, "SIMON","GIIIIII","giovanni.simon@free.fr","Paris", "0123456789", new Date()));
+		list.add(new Student(1L, "SIMON","TIMA","giovanni.simon@free.fr","Paris", "0123456789", new Date()));
+		list.add(new Student(2L, "SIMON","GIIIIII","giovanni.simon@free.fr","Paris", "0123456789", new Date()));
 		when(studentRepository.findAll()).thenReturn(toDoList);
 		
 		List<Student> result = studentService.getAllStudents();
 		assertEquals(2, result.size());
+	}
+	
+	
+	@Test
+	public void studentUpdateCheck() {
+		Student gio = new Student(1L, "SIMON","TIMA","giovanni.simon@free.fr","Paris", "0123456789", new Date());
+
+		Mockito.when(studentRepository.save(gio)).thenReturn(gio);
+		
+		Student result = studentService.updateStudent(gio.getId(), gio);
+		Mockito.verify(studentRepository).save(result);
 	}
 	
 	

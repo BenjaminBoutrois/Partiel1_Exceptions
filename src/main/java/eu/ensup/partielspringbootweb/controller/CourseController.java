@@ -5,6 +5,7 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import eu.ensup.partielspringbootweb.config.ResourceNotFoundException;
 import eu.ensup.partielspringbootweb.entities.Course;
+import eu.ensup.partielspringbootweb.entities.Student;
 import eu.ensup.partielspringbootweb.service.ICourseService;
 
 @RestController
@@ -69,9 +71,10 @@ public class CourseController {
 	}
 	
 	@PutMapping("/update/{id}")
-	public void updateCourse(@PathVariable(value = "id") Long id, @Valid @RequestBody Course course) throws ResourceNotFoundException {
+	public ResponseEntity<Course> updateCourse(@PathVariable(value = "id") Long id, @Valid @RequestBody Course course) throws ResourceNotFoundException {
 		
-		courseService.updateCourse(id, course);
+		final Course updatedCoure = courseService.updateCourse(id, course);
+		return ResponseEntity.ok(updatedCoure);
 	}
 	
 	

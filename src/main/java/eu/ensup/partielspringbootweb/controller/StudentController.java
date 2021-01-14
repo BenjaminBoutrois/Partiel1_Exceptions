@@ -5,6 +5,7 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import eu.ensup.partielspringbootweb.config.ResourceNotFoundException;
 import eu.ensup.partielspringbootweb.entities.Student;
 import eu.ensup.partielspringbootweb.service.IStudentService;
+import fr.sfconsulting.gestion_caces.entities.Stagiaire;
 
 @RestController
 @CrossOrigin
@@ -68,10 +70,10 @@ public class StudentController {
 	}
 	
 	@PostMapping("/create")
-	public void createStudent(@Valid @RequestBody Student student) {
+	public Student createStudent(@Valid @RequestBody Student student) {
 		System.out.println("++++++++++++ REquestBody +++++++++++: "+ student);
 		
-		studentService.createStudent(student);
+		return studentService.createStudent(student);
 	}
 	
 	@DeleteMapping("/delete/{id}")
@@ -82,9 +84,10 @@ public class StudentController {
 	}
 	
 	@PutMapping("/update/{id}")
-	public void updateStudent(@PathVariable(value = "id") Long id, @Valid @RequestBody Student student) throws ResourceNotFoundException {
+	public ResponseEntity<Student> updateStudent(@PathVariable(value = "id") Long id, @Valid @RequestBody Student student) throws ResourceNotFoundException {
 		
-		studentService.updateStudent(id, student);
+		final Student updatedStudent = studentService.updateStudent(id, student);
+		return ResponseEntity.ok(updatedStudent);
 	}
 	
 	

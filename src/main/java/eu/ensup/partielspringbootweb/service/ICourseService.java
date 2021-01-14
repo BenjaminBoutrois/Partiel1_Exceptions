@@ -16,8 +16,9 @@ public interface ICourseService
 	 * Crée un cours en base de données.
 	 * 
 	 * @param course Cours à créer.
+	 * @return 
 	 */
-	void createCourse(Course course);
+	Course createCourse(Course course);
 	
 	/**
 	 * Retourne un cours en fonction de son id.
@@ -43,8 +44,9 @@ public interface ICourseService
 	 * Met à jour les données d'un cours.
 	 * 
 	 * @param course      Un objet cours avec les nouvelles données.
+	 * @return 
 	 */
-	void updateCourse(Long id,Course course);
+	Course updateCourse(Long id,Course course);
 	
 	/**
 	 * Supprime un cours de la base de données en fonction de son id.

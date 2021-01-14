@@ -1,6 +1,7 @@
 package eu.ensup.partielspringbootweb.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -9,6 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import eu.ensup.partielspringbootweb.config.ResourceNotFoundException;
+import eu.ensup.partielspringbootweb.entities.Course;
+import eu.ensup.partielspringbootweb.entities.Student;
+import eu.ensup.partielspringbootweb.entities.Course;
 import eu.ensup.partielspringbootweb.entities.Course;
 import eu.ensup.partielspringbootweb.repositories.CourseRepository;
 
@@ -37,8 +41,8 @@ public class CourseServiceImpl  implements ICourseService{
 
 
 	@Override
-	public void createCourse(Course course) {
-		courseRepo.save(course);		
+	public Course createCourse(Course course) {
+		return courseRepo.save(course);		
 	}
 
 
@@ -46,18 +50,31 @@ public class CourseServiceImpl  implements ICourseService{
 	@Override
 	public Course getCourse(Long id) throws ResourceNotFoundException {
 		// TODO Auto-generated method stub
-		return courseRepo.findById(id).get();
+		Course cours = null;
+		Optional<Course> stuFound = courseRepo.findById(id);
+		if(stuFound.isPresent()) {
+			cours = stuFound.get();
+		}
+		
+			return cours;
+
 	}
 
 
-
 	@Override
-	public void updateCourse(Long id, Course course) {
+	public Course updateCourse(Long id, Course course) {
 		// TODO Auto-generated method stub
-		Course c = courseRepo.findById(id).get();
-		c.setNumberHours(course.getNumberHours());
-		c.setThemeCourse(course.getThemeCourse());
-		courseRepo.save(c);	
+		Optional<Course> c = courseRepo.findById(id);
+		
+		Course cours = null;
+		Optional<Course> studentFound  = courseRepo.findById(id);
+		if(studentFound.isPresent()) {
+			cours = studentFound.get();
+			cours.setNumberHours(course.getNumberHours());
+			cours.setThemeCourse(course.getThemeCourse());
+			
+			}
+		return courseRepo.save(cours);
 		
 	}
 
@@ -65,7 +82,11 @@ public class CourseServiceImpl  implements ICourseService{
 	@Override
 	public void deleteCourse(Long id) {
 		// TODO Auto-generated method stub
-		courseRepo.deleteById(id);	
+		Optional<Course>  studDel = courseRepo.findById(id);
+		if(studDel.isPresent()) {
+			courseRepo.delete(studDel.get());
+		}
+		
 		
 	}
 
