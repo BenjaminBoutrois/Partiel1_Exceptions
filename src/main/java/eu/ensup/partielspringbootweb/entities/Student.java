@@ -1,6 +1,7 @@
 package eu.ensup.partielspringbootweb.entities;
 
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -42,6 +43,10 @@ public class Student extends Personne
 	{
 		super();
 		
+	}
+	
+	public Student(String first_name, String last_name, String mail, String address, String phone, Date dob) {
+		super(first_name, last_name, mail, address, phone, dob);
 	}
 
 	
