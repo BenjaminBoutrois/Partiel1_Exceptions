@@ -33,9 +33,7 @@ public class StudentServiceImpl implements IStudentService {
 	@Override
 	public Student getStudent(Long id) throws ResourceNotFoundException {
 		// TODO Auto-generated method stub
-		return (Student) studentRepo.findById(id)
-				.orElseThrow(()-> new ResourceNotFoundException(" Etudiant non trouvé "))
-				;
+		return studentRepo.findById(id).get();
 	}
 
 	@Override
@@ -53,7 +51,7 @@ public class StudentServiceImpl implements IStudentService {
 	@Override
 	public void deleteStudent(Long id) {
 		// TODO Auto-generated method stub
-		Student studDel = (Student) studentRepo.findById(id).get();
+		Student studDel = studentRepo.findById(id).get();
 		studentRepo.delete(studDel);
 		
 	}

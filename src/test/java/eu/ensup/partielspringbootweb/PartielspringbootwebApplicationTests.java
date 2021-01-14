@@ -1,15 +1,20 @@
 package eu.ensup.partielspringbootweb;
 
+import static org.junit.Assert.assertEquals;
+
 import java.util.Date;
 
 import org.junit.Before;
 import org.junit.jupiter.api.Test;
+import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import eu.ensup.partielspringbootweb.config.ResourceNotFoundException;
 import eu.ensup.partielspringbootweb.entities.Course;
 import eu.ensup.partielspringbootweb.entities.Student;
 import eu.ensup.partielspringbootweb.repositories.StudentRepository;
@@ -21,10 +26,15 @@ class PartielspringbootwebApplicationTests {
 
 	
 	@Mock
-	StudentRepository mock = Mockito.mock(StudentRepository.class);
+	private StudentRepository studentRepository;
 	
 	@InjectMocks
-	StudentServiceImpl studentService = new StudentServiceImpl(mock);
+	private StudentServiceImpl studentService;
+	
+	@Before
+	public void setup(){
+		MockitoAnnotations.initMocks(this);
+	}
 
 	
 	Student gio = new Student("SIMON","GIOVANNI","giovanni.simon@free.fr","Paris","0123456789",new Date());
@@ -38,24 +48,29 @@ class PartielspringbootwebApplicationTests {
 	
 	/////ETUDIANT////////////////////////////////////////////////
 	
-	
 	@Test
-	public void testCreateStudent() {
+	public void testGetByIdStudent() throws ResourceNotFoundException {
 		
-		Mockito.doNothing().when(mock).save(gio);
-		studentService.createStudent(gio);
-		Mockito.verify(mock,Mockito.times(1)).save(gio);
-				
+		Long id = 1L;
+		Student gio = new Student("SIMON","GIOVANNI","giovanni.simon@free.fr","Paris","0123456789",new Date(),id);
+		//studentService.getStudent(gio.getId());
+        //Mockito.verify(studentRepository, Mockito.times(1)).getOne(gio.getId());	
+		Mockito.when(studentRepository.findById(1L).get()).thenReturn(gio);
+		Student result = studentService.getStudent(1L);
+		assertEquals(Long.valueOf(1L), result.getId());
+		//assertEquals("Todo Sample 1", result.getText());
+		//assertEquals(true, result.isCompleted());
 	}
 	
 	@Test
 	public void testDeleteStudent() {
-		Mockito.doNothing().when(mock).delete(gio);
+		
+		Long id = 1L;
+		Student gio = new Student("SIMON","GIOVANNI","giovanni.simon@free.fr","Paris","0123456789",new Date());
+		gio.setId(id);
 		studentService.deleteStudent(gio.getId());
-		Mockito.verify(mock,Mockito.times(1)).delete(gio);
-				
-	}
-	
+        Mockito.verify(studentRepository, Mockito.times(1)).delete(gio);	
+	}	
 	
 	
 }
