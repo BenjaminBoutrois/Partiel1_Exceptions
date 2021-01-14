@@ -48,11 +48,11 @@ public class Student extends Personne
 	public Student(String first_name, String last_name, String mail, String address, String phone, Date dob) {
 		super(first_name, last_name, mail, address, phone, dob);
 	}
-	
-	public Student(String first_name, String last_name, String mail, String address, String phone, Date dob, Long id) {
-		super(first_name, last_name, mail, address, phone, dob);
-		this.setId(id);
-	}
 
+	public Student(Long id, String firstName, String lastName, String mail, String address, String phone, Date dob) {
+		super(id, firstName, lastName, mail, address, phone, dob);
+	}
+	
+	
 	
 }

@@ -75,7 +75,7 @@ public class StudentController {
 	}
 	
 	@DeleteMapping("/delete/{id}")
-	public void deleteStudent(@PathVariable(value = "id") Long id) {
+	public void deleteStudent(@PathVariable(value = "id") Long id) throws ResourceNotFoundException {
 		
 		studentService.deleteStudent(id);
 		

@@ -1,6 +1,7 @@
 package eu.ensup.partielspringbootweb.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import eu.ensup.partielspringbootweb.config.ResourceNotFoundException;
 import eu.ensup.partielspringbootweb.entities.Student;
@@ -12,8 +13,9 @@ public interface IStudentService
 	 * Crée un étudiant en base de données.
 	 * 
 	 * @param student L'étudiant à créer.
+	 * @return 
 	 */
-	void createStudent(Student student);
+	Student createStudent(Student student);
 
 	/**
 	 * Retourne un étudiant en fonction de son id.
@@ -43,8 +45,9 @@ public interface IStudentService
 	 * Supprime un étudiant de la base de données en fonction de son id.
 	 * 
 	 * @param id L'id de l'étudiant à supprimer.
+	 * @throws ResourceNotFoundException 
 	 */
-	void deleteStudent(Long id);
+	void deleteStudent(Long id) throws ResourceNotFoundException;
 
 	/**
 	 * Met à jour les données d'un étudiant.

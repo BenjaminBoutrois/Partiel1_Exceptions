@@ -41,8 +41,21 @@ public class Personne {
 
     public Personne() {
     }
+    
+    
 
-    public Long getId() {
+    public Personne(Long id, String firstName, String lastName, String mail, String address, String phone, Date dob) {
+		super();
+		this.id = id;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.mail = mail;
+		this.address = address;
+		this.phone = phone;
+		this.dob = dob;
+	}
+
+	public Long getId() {
    	 return id;
     }
 

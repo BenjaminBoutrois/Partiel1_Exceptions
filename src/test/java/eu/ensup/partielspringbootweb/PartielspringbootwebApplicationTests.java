@@ -1,8 +1,12 @@
 package eu.ensup.partielspringbootweb;
 
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.when;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import java.util.Optional;
 
 import org.junit.Before;
 import org.junit.jupiter.api.Test;
@@ -51,26 +55,46 @@ class PartielspringbootwebApplicationTests {
 	@Test
 	public void testGetByIdStudent() throws ResourceNotFoundException {
 		
-		Long id = 1L;
-		Student gio = new Student("SIMON","GIOVANNI","giovanni.simon@free.fr","Paris","0123456789",new Date(),id);
+		Student gio = new Student(1L, "SIMON","GIOVANNI","giovanni.simon@free.fr","Paris", "0123456789", new Date());
 		//studentService.getStudent(gio.getId());
         //Mockito.verify(studentRepository, Mockito.times(1)).getOne(gio.getId());	
-		Mockito.when(studentRepository.findById(1L).get()).thenReturn(gio);
-		Student result = studentService.getStudent(1L);
-		assertEquals(Long.valueOf(1L), result.getId());
-		//assertEquals("Todo Sample 1", result.getText());
-		//assertEquals(true, result.isCompleted());
+		Mockito.when(studentRepository.getOne(1L)).thenReturn(gio);
+		Student  result = studentService.getStudent(1L);
+		if(result != null) {
+			assertEquals(Long.valueOf(1L), result.getId());
+
+		}
+		
 	}
 	
 	@Test
-	public void testDeleteStudent() {
+	public void testDeleteStudent() throws ResourceNotFoundException {
 		
-		Long id = 1L;
-		Student gio = new Student("SIMON","GIOVANNI","giovanni.simon@free.fr","Paris","0123456789",new Date());
-		gio.setId(id);
+		Student gio = new Student(1L, "SIMON","GIOVANNI","giovanni.simon@free.fr","Paris", "0123456789", new Date());
 		studentService.deleteStudent(gio.getId());
-        Mockito.verify(studentRepository, Mockito.times(1)).delete(gio);	
+        Mockito.verify(studentRepository, Mockito.times(1)).delete(gio);
 	}	
+	
+	@Test
+	public void saveToDo(){
+		Student gio = new Student(1L, "SIMON","TIMA","giovanni.simon@free.fr","Paris", "0123456789", new Date());
+		when(studentRepository.save(gio)).thenReturn(gio);
+		Student result = studentService.createStudent(gio);
+		assertEquals(Long.valueOf(1L), result.getId());
+		
+	}
+	
+	@Test
+	public void testGetAllToDo(){
+		List<Student> toDoList = new ArrayList<Student>();
+	
+		toDoList.add(new Student(1L, "SIMON","TIMA","giovanni.simon@free.fr","Paris", "0123456789", new Date()));
+		toDoList.add(new Student(2L, "SIMON","GIIIIII","giovanni.simon@free.fr","Paris", "0123456789", new Date()));
+		when(studentRepository.findAll()).thenReturn(toDoList);
+		
+		List<Student> result = studentService.getAllStudents();
+		assertEquals(2, result.size());
+	}
 	
 	
 }

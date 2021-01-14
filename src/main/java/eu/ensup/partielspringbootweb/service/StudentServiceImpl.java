@@ -1,6 +1,7 @@
 package eu.ensup.partielspringbootweb.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,15 +26,24 @@ public class StudentServiceImpl implements IStudentService {
 	}
 
 	@Override
-	public void createStudent(Student student) {
-		studentRepo.save(student);
+	public Student createStudent(Student student) {
+		return studentRepo.save(student);
 		
 	}
 
 	@Override
 	public Student getStudent(Long id) throws ResourceNotFoundException {
 		// TODO Auto-generated method stub
-		return studentRepo.findById(id).get();
+		Student stu = null;
+		Optional<Student> stuFound = studentRepo.findById(id);
+		if(stuFound.isPresent()) {
+			stu = stuFound.get();
+		}
+		
+			return stu;
+
+		
+		
 	}
 
 	@Override
@@ -51,8 +61,11 @@ public class StudentServiceImpl implements IStudentService {
 	@Override
 	public void deleteStudent(Long id) {
 		// TODO Auto-generated method stub
-		Student studDel = studentRepo.findById(id).get();
-		studentRepo.delete(studDel);
+		Optional<Student>  studDel = studentRepo.findById(id);
+		if(studDel.isPresent()) {
+			studentRepo.delete(studDel.get());
+		}
+		
 		
 	}
 
