@@ -1,6 +1,7 @@
 package eu.ensup.partielspringbootweb.controller;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.validation.Valid;
 
@@ -17,9 +18,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import eu.ensup.partielspringbootweb.config.ResourceNotFoundException;
+import eu.ensup.partielspringbootweb.entities.Course;
 import eu.ensup.partielspringbootweb.entities.Student;
 import eu.ensup.partielspringbootweb.service.IStudentService;
-import fr.sfconsulting.gestion_caces.entities.Stagiaire;
 
 @RestController
 @CrossOrigin
@@ -40,7 +41,7 @@ public class StudentController {
 		this.studentService = studentService;
 	}
 
-	@GetMapping(value="/getAll",produces = {"application/json"})
+	@GetMapping("/getAll")
 	public List<Student> getAllStudents(){
 		System.out.println("+++++++++++++++ GetAll +++++++++++++");
 		
@@ -48,7 +49,7 @@ public class StudentController {
 		
 	}
 	
-	@GetMapping(value="/detail/{id}")
+	@GetMapping("/detail/{id}")
 	public Student getStudentById(@PathVariable(value = "id") Long id) throws ResourceNotFoundException {
 		
 		return studentService.getStudent(id);
@@ -84,10 +85,21 @@ public class StudentController {
 	}
 	
 	@PutMapping("/update/{id}")
-	public ResponseEntity<Student> updateStudent(@PathVariable(value = "id") Long id, @Valid @RequestBody Student student) throws ResourceNotFoundException {
+	public Student updateStudent(@PathVariable(value = "id") Long id, @Valid @RequestBody Student student) throws ResourceNotFoundException {
 		
-		final Student updatedStudent = studentService.updateStudent(id, student);
-		return ResponseEntity.ok(updatedStudent);
+		Student studentFound = studentService.getStudent(id);
+		System.out.println("le student found"+studentFound.getId());
+		Set<Course> studentCourses = studentFound.getCourses();
+		studentCourses.addAll(student.getCourses());
+		studentFound.setCourses(studentCourses);
+		studentFound.setFirstName(student.getFirstName());
+		studentFound.setLastName(student.getLastName());
+		studentFound.setMail(student.getMail());
+		studentFound.setPhone(student.getPhone());
+		studentFound.setDob(student.getDob());
+		studentFound.setAddress(student.getAddress());
+		return  studentService.updateStudent(studentFound);
+		
 	}
 	
 	

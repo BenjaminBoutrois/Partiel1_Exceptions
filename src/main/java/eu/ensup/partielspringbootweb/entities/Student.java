@@ -2,7 +2,9 @@ package eu.ensup.partielspringbootweb.entities;
 
 import java.util.Collection;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.DiscriminatorValue;
@@ -16,6 +18,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.NamedAttributeNode;
 import javax.persistence.NamedEntityGraph;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 
 /**
  * Classe métier représentant un étudiant.
@@ -23,10 +27,8 @@ import javax.persistence.NamedEntityGraph;
  *
  */
 @Entity
-@NamedEntityGraph(name = "Student.courses",
-attributeNodes = @NamedAttributeNode("courses")
-)
 @DiscriminatorValue("STUDENT")
+@JsonIgnoreProperties(value = {"courses"})
 public class Student extends Personne
 {
 	
@@ -35,9 +37,8 @@ public class Student extends Personne
 	 * mailAddress; private String address; private String numberPhone; private
 	 * String birthDate;
 	 */
-	@ManyToMany(mappedBy = "students")
-	
-	List<Course> courses;
+	@ManyToMany(fetch = FetchType.EAGER)
+	private Set<Course> courses =  new HashSet<Course>();
 
 	public Student()
 	{
@@ -45,13 +46,23 @@ public class Student extends Personne
 		
 	}
 	
-	public Student(String first_name, String last_name, String mail, String address, String phone, Date dob) {
-		super(first_name, last_name, mail, address, phone, dob);
-	}
-
 	public Student(Long id, String firstName, String lastName, String mail, String address, String phone, Date dob) {
 		super(id, firstName, lastName, mail, address, phone, dob);
 	}
+
+
+
+	public Set<Course> getCourses() {
+		return courses;
+	}
+
+
+
+	public void setCourses(Set<Course> courses) {
+		this.courses = courses;
+	}
+	
+	
 	
 	
 	

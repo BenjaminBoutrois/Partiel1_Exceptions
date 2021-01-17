@@ -54,7 +54,7 @@ class PartielspringbootwebApplicationTests {
 		
 		Student gio = new Student(1L, "SIMON","GIOVANNI","giovanni.simon@free.fr","Paris", "0123456789", new Date());
 	
-		Mockito.when(studentRepository.getOne(1L)).thenReturn(gio);
+		Mockito.when(studentRepository.findById(1L).get()).thenReturn(gio);
 		Student  result = studentService.getStudent(1L);
 		if(result != null) {
 			assertEquals(Long.valueOf(1L), result.getId());
@@ -87,7 +87,7 @@ class PartielspringbootwebApplicationTests {
 	
 		list.add(new Student(1L, "SIMON","TIMA","giovanni.simon@free.fr","Paris", "0123456789", new Date()));
 		list.add(new Student(2L, "SIMON","GIIIIII","giovanni.simon@free.fr","Paris", "0123456789", new Date()));
-		when(studentRepository.findAll()).thenReturn(toDoList);
+		when(studentRepository.findAll()).thenReturn(list);
 		
 		List<Student> result = studentService.getAllStudents();
 		assertEquals(2, result.size());
@@ -100,7 +100,7 @@ class PartielspringbootwebApplicationTests {
 
 		Mockito.when(studentRepository.save(gio)).thenReturn(gio);
 		
-		Student result = studentService.updateStudent(gio.getId(), gio);
+		Student result = studentService.updateStudent(gio);
 		Mockito.verify(studentRepository).save(result);
 	}
 	

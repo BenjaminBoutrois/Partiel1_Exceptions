@@ -55,7 +55,7 @@ public interface IStudentService
 	 * @param student      Un objet étudiant avec les nouvelles données.
 	 * @return 
 	 */
-	Student updateStudent(Long id,Student student);
+	Student updateStudent(Student student);
 
 	/**
 	 * Recherche un ou plusieurs étudiants en fonction de leur données.
@@ -65,4 +65,6 @@ public interface IStudentService
 	 * @return La liste des étudiants correspondant au prénom et au nom entrés.
 	 */
 	List<Student> searchStudent(String firstName, String lastName);
+
+	
 }

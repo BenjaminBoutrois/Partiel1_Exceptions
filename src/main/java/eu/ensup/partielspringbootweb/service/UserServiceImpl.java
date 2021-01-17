@@ -32,5 +32,13 @@ public class UserServiceImpl  implements IUserService{
 		return userRepo.findByLoginAndPassword(user.getLogin(), user.getPassword());
 		//return null;
 	}
+	
+	@Override
+	public User create(String login , String password) {
+		
+		User user = new User(login, password);
+		
+		return userRepo.save(user);
+	}
 
 }

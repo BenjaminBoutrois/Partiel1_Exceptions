@@ -1,6 +1,8 @@
 package eu.ensup.partielspringbootweb.entities;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -9,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
 /**
@@ -22,15 +25,17 @@ public class Course
 {
 	@Id
 	 @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Long id;
+    private Long idCourse;
 	private String themeCourse;
 	private int numberHours;
 	
-	@ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
-	@JoinColumn
-	List<Student> students;
-
-
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(
+				
+				joinColumns = @JoinColumn(name = "idCourse"),
+				inverseJoinColumns =  @JoinColumn(name = "id")
+			)
+	private Set<Student> students = new HashSet<Student>();
 	public Course()
 	{
 		super();
@@ -43,20 +48,16 @@ public class Course
 		this.numberHours = numberHours;
 	}
 	
+
 	
 
-	/**
-	 * @return the id
-	 */
-	public Long getId() {
-		return id;
+
+	public Long getIdCourse() {
+		return idCourse;
 	}
 
-	/**
-	 * @param id the id to set
-	 */
-	public void setId(Long id) {
-		this.id = id;
+	public void setIdCourse(Long idCourse) {
+		this.idCourse = idCourse;
 	}
 
 	public String getThemeCourse()
@@ -79,9 +80,20 @@ public class Course
 		this.numberHours = numberHours;
 	}
 
+	
+	public Set<Student> getStudents() {
+		return students;
+	}
+
+	public void setStudents(Set<Student> students) {
+		this.students = students;
+	}
+
 	@Override
 	public String toString()
 	{
 		return "Course [themeCourse=" + themeCourse + ", numberHours=" + numberHours + "]";
 	}
+	
+	
 }

@@ -70,22 +70,9 @@ public class StudentServiceImpl implements IStudentService {
 	}
 
 	@Override
-	public Student updateStudent(Long id ,Student student) {
-		Student stu = null;
-		Optional<Student> studentFound  = studentRepo.findById(id);
-		if(studentFound.isPresent()) {
-			stu = studentFound.get();
-			stu.setAddress(student.getAddress());
-			stu.setDob(student.getDob());
-			stu.setFirstName(student.getFirstName());
-			stu.setLastName(student.getLastName());
-			stu.setMail(student.getMail());
-			stu.setPhone(student.getPhone());
-			
-			}
-		return studentRepo.save(stu);
+	public Student updateStudent(Student student) {
 		
-		
+		return studentRepo.save(student);
 		
 	}
 

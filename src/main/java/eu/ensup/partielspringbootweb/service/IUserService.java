@@ -15,4 +15,6 @@ public interface IUserService
 	 * @return L'utilisateur correspondant au login et mot de passe.
 	 */
 	User getUser(User user);
+
+	User create(String login, String password);
 }
