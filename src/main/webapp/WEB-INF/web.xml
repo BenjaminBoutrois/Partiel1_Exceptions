@@ -1,0 +1,174 @@
+<!DOCTYPE web-app PUBLIC
+ "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+ "http://java.sun.com/dtd/web-app_2_3.dtd" >
+
+<web-app>
+
+  	<display-name>Archetype Created Web Application</display-name>
+	 
+	<servlet>
+		<servlet-name>ConnexionServlet</servlet-name>
+		<display-name>ConnexionServlet</display-name>
+		<description>servlet d'authentification</description>
+		<servlet-class>servlets.ConnexionServlet</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>ConnexionServlet</servlet-name>
+		<url-pattern>/ConnexionServlet</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>EtudiantServlet</servlet-name>
+		<display-name>EtudiantServlet</display-name>
+		<description>servlet liste etudiant</description>
+		<servlet-class>servlets.EtudiantServlet</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>EtudiantServlet</servlet-name>
+		<url-pattern>/EtudiantServlet</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>AjoutEtudiantServlet</servlet-name>
+		<display-name>AjoutEtudiantServlet</display-name>
+		<description>servlet ajout etudiant</description>
+		<servlet-class>servlets.AjoutEtudiantServlet</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>AjoutEtudiantServlet</servlet-name>
+		<url-pattern>/AjoutEtudiantServlet</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>SupprimerEtudiantServlet</servlet-name>
+		<display-name>SupprimerEtudiantServlet</display-name>
+		<description>servlet supprimer etudiant</description>
+		<servlet-class>servlets.SupprimerEtudiantServlet</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>SupprimerEtudiantServlet</servlet-name>
+		<url-pattern>/SupprimerEtudiantServlet</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>ModifEtudiantServlet</servlet-name>
+		<display-name>ModifEtudiantServlet</display-name>
+		<description>servlet modifier etudiant</description>
+		<servlet-class>servlets.ModifEtudiantServlet</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>ModifEtudiantServlet</servlet-name>
+		<url-pattern>/ModifEtudiantServlet</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>EditerEtudiantServlet</servlet-name>
+		<display-name>EditerEtudiantServlet</display-name>
+		<description>servlet modifier etudiant</description>
+		<servlet-class>servlets.EditerEtudiantServlet</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>EditerEtudiantServlet</servlet-name>
+		<url-pattern>/EditerEtudiantServlet</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>RechercheEtudiantServlet</servlet-name>
+		<display-name>RechercheEtudiantServlet</display-name>
+		<description>servlet rechercher etudiant</description>
+		<servlet-class>servlets.RechercheEtudiantServlet</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>RechercheEtudiantServlet</servlet-name>
+		<url-pattern>/RechercheEtudiantServlet</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>ViewEtudiantServlet</servlet-name>
+		<display-name>ViewEtudiantServlet</display-name>
+		<description>servlet rechercher etudiant</description>
+		<servlet-class>servlets.ViewEtudiantServlet</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>ViewEtudiantServlet</servlet-name>
+		<url-pattern>/ViewEtudiantServlet</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>EtudiantCoursServlet</servlet-name>
+		<display-name>EtudiantCoursServlet</display-name>
+		<description>servlet associeer cours etudiant</description>
+		<servlet-class>servlets.EtudiantCoursServlet</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>EtudiantCoursServlet</servlet-name>
+		<url-pattern>/EtudiantCoursServlet</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>AjoutCoursServlet</servlet-name>
+		<display-name>AjoutCoursServlet</display-name>
+		<description>servlet AjoutCoursServlet</description>
+		<servlet-class>servlets.AjoutCoursServlet</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>AjoutCoursServlet</servlet-name>
+		<url-pattern>/AjoutCoursServlet</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>EditerCoursServlet</servlet-name>
+		<display-name>EditerCoursServlet</display-name>
+		<description></description>
+		<servlet-class>servlets.EditerCoursServlet</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>EditerCoursServlet</servlet-name>
+		<url-pattern>/EditerCoursServlet</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>SupprimerCoursServlet</servlet-name>
+		<display-name>SupprimerCoursServlet</display-name>
+		<description></description>
+		<servlet-class>servlets.SupprimerCoursServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>ModifCoursServlet</servlet-name>
+		<display-name>ModifCoursServlet</display-name>
+		<description></description>
+		<servlet-class>servlets.ModifCoursServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>CoursServlet</servlet-name>
+		<display-name>CoursServlet</display-name>
+		<description></description>
+		<servlet-class>servlets.CoursServlet</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>SupprimerCoursServlet</servlet-name>
+		<url-pattern>/SupprimerCoursServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ModifCoursServlet</servlet-name>
+		<url-pattern>/ModifCoursServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>CoursServlet</servlet-name>
+		<url-pattern>/CoursServlet</url-pattern>
+	</servlet-mapping>
+
+
+</web-app>
