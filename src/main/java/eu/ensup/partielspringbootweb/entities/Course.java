@@ -47,7 +47,7 @@ public class Course
 		super();
 		this.themeCourse = themeCourse;
 		this.numberHours = numberHours;
-		this.id = id;
+		this.idCourse = id;
 	}
 	
 	

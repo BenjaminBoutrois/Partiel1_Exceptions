@@ -61,7 +61,7 @@ class PartielspringbootwebApplicationTests {
 		
 		Student gio = new Student(1L, "SIMON","GIOVANNI","giovanni.simon@free.fr","Paris", "0123456789", new Date());
 	
-		Mockito.when(studentRepository.findById(1L).get()).thenReturn(gio);
+		Mockito.when(studentRepository.getOne(1L)).thenReturn(gio);
 		Student  result = studentService.getStudent(1L);
 		if(result != null) {
 			assertEquals(Long.valueOf(1L), result.getId());
@@ -115,7 +115,7 @@ class PartielspringbootwebApplicationTests {
 	
 	@Test
 	public void saveCours(){
-		Course math = new Course("math",12);
+		Course math = new Course("math",12,1L);
 		when(courseRepository.save(math)).thenReturn(math);
 		Course result = courseService.createCourse(math);
 		assertEquals("math", result.getThemeCourse());
@@ -124,8 +124,8 @@ class PartielspringbootwebApplicationTests {
 	
 	@Test
 	public void testGetAllCourse(){
-		Course math = new Course("math",12);
-		Course francais = new Course("francais",6);
+		Course math = new Course("math",12,1L);
+		Course francais = new Course("francais",6,2L);
 		List<Course> list = new ArrayList<Course>();
 	
 		list.add(math);
@@ -139,19 +139,19 @@ class PartielspringbootwebApplicationTests {
 	@Test
 	public void testDeleteCourse() throws ResourceNotFoundException {
 		
-		Course math = new Course("math",12);
+		Course math = new Course("math",12,1L);
 		courseRepository.delete(math);
-		courseService.deleteCourse(math.getId());
+		courseService.deleteCourse(math.getIdCourse());
         Mockito.verify(courseRepository, Mockito.times(1)).delete(math);
 	}
 	
 	@Test
 	public void courseUpdateCheck() {
-		Course math = new Course("math",12);
+		Course math = new Course("math",12,1L);
 
 		Mockito.when(courseRepository.save(math)).thenReturn(math);
 		
-		Course result = courseService.updateCourse(math.getId(), math);
+		Course result = courseService.updateCourse(math.getIdCourse(), math);
 		Mockito.verify(courseRepository).save(result);
 	}
 	
@@ -164,7 +164,7 @@ class PartielspringbootwebApplicationTests {
 		Mockito.when(courseRepository.getOne(id)).thenReturn(math);
 		Course  result = courseService.getCourse(1L);
 		if(result != null) {
-			assertEquals(Long.valueOf(1L), result.getId());
+			assertEquals(Long.valueOf(1L), result.getIdCourse());
 
 		}
 		

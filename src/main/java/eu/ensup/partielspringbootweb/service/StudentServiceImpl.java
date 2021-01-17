@@ -40,10 +40,7 @@ public class StudentServiceImpl implements IStudentService {
 			stu = stuFound.get();
 		}
 		
-			return stu;
-
-		
-		
+			return stu;		
 	}
 
 	@Override
