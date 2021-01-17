@@ -21,9 +21,12 @@ import org.springframework.boot.test.context.SpringBootTest;
 import eu.ensup.partielspringbootweb.config.ResourceNotFoundException;
 import eu.ensup.partielspringbootweb.entities.Course;
 import eu.ensup.partielspringbootweb.entities.Student;
+import eu.ensup.partielspringbootweb.repositories.CourseRepository;
 import eu.ensup.partielspringbootweb.repositories.StudentRepository;
 import eu.ensup.partielspringbootweb.repositories.UserRepository;
+import eu.ensup.partielspringbootweb.service.CourseServiceImpl;
 import eu.ensup.partielspringbootweb.service.StudentServiceImpl;
+import eu.ensup.partielspringbootweb.service.UserServiceImpl;
 
 @SpringBootTest
 class PartielspringbootwebApplicationTests {
@@ -35,6 +38,12 @@ class PartielspringbootwebApplicationTests {
 	@InjectMocks
 	private StudentServiceImpl studentService;
 	
+	@Mock
+	private CourseRepository courseRepository;
+	
+	@InjectMocks
+	private CourseServiceImpl courseService;
+	
 	@Before
 	public void setup(){
 		MockitoAnnotations.initMocks(this);
@@ -43,8 +52,6 @@ class PartielspringbootwebApplicationTests {
 	
 	
 	Course coursTest = new Course();
-	Course math = new Course("math",12);
-	Course francais = new Course("francais",6);
 	
 	
 	/////ETUDIANT////////////////////////////////////////////////
@@ -102,6 +109,65 @@ class PartielspringbootwebApplicationTests {
 		
 		Student result = studentService.updateStudent(gio);
 		Mockito.verify(studentRepository).save(result);
+	}
+	
+	////////////////////////////////COURSE///////////////////////////////////////
+	
+	@Test
+	public void saveCours(){
+		Course math = new Course("math",12);
+		when(courseRepository.save(math)).thenReturn(math);
+		Course result = courseService.createCourse(math);
+		assertEquals("math", result.getThemeCourse());
+		
+	}
+	
+	@Test
+	public void testGetAllCourse(){
+		Course math = new Course("math",12);
+		Course francais = new Course("francais",6);
+		List<Course> list = new ArrayList<Course>();
+	
+		list.add(math);
+		list.add(francais);
+		when(courseRepository.findAll()).thenReturn(list);
+		
+		List<Course> result = courseService.getAllCourses();
+		assertEquals(2, result.size());
+	}
+	
+	@Test
+	public void testDeleteCourse() throws ResourceNotFoundException {
+		
+		Course math = new Course("math",12);
+		courseRepository.delete(math);
+		courseService.deleteCourse(math.getId());
+        Mockito.verify(courseRepository, Mockito.times(1)).delete(math);
+	}
+	
+	@Test
+	public void courseUpdateCheck() {
+		Course math = new Course("math",12);
+
+		Mockito.when(courseRepository.save(math)).thenReturn(math);
+		
+		Course result = courseService.updateCourse(math.getId(), math);
+		Mockito.verify(courseRepository).save(result);
+	}
+	
+	@Test
+	public void testGetCourse() throws ResourceNotFoundException {
+		
+		Long id = 1L;
+		Course math = new Course("math",12,id);
+	
+		Mockito.when(courseRepository.getOne(id)).thenReturn(math);
+		Course  result = courseService.getCourse(1L);
+		if(result != null) {
+			assertEquals(Long.valueOf(1L), result.getId());
+
+		}
+		
 	}
 	
 	
