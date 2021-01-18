@@ -86,7 +86,15 @@ public class ConnexionServlet extends HttpServlet {
 			
 			dispatcher = request.getRequestDispatcher("home.jsp");
 			HttpSession session = request.getSession();
+			String profil;
+			if(userRetour.getProfil() == "D") {
+				profil = "Directeur";
+			}
+			else {
+				profil = "Responsable";
+			}
 			session.setAttribute("user", userRetour);
+			session.setAttribute("profil", profil);
 			session.setAttribute("students", studentService.getListStudent());
 			session.setAttribute("courses", courseService.getAllCours());
 

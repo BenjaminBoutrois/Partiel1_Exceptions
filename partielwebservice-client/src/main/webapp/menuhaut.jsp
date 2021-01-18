@@ -5,6 +5,7 @@
         <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
             <div class="container">
                                 <% User user = (User) session.getAttribute("user");%>
+                                
                 
                 <a class="navbar-brand js-scroll-trigger" href="#page-top">GESTION SCOLAIRE</a>
                 
