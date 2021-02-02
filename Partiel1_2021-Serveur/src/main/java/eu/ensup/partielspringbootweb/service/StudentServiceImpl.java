@@ -25,12 +25,21 @@ public class StudentServiceImpl implements IStudentService {
 		this.studentRepo = studentRepo;
 	}
 
+	/**
+	 * Methode de creation d'etudiant
+	 * renvoi l'etudiant créer
+	 */
 	@Override
 	public Student createStudent(Student student) {
 		return studentRepo.save(student);
 		
 	}
 
+	/**
+	 * Mthode de recherche d'etudiant par son id
+	 * @param prend en parametre id de type Long
+	 * @return renvoi l'etudiant trouver
+	 */
 	@Override
 	public Student getStudent(Long id) throws ResourceNotFoundException {
 		// TODO Auto-generated method stub
@@ -44,17 +53,31 @@ public class StudentServiceImpl implements IStudentService {
 		
 	}
 
+	
+	/**
+	 * Methode de recherche d'etudiant par son email
+	 * @param prend en parametre un mail de type String
+	 * @return renvoi l'etudiant trouvé
+	 */
 	@Override
 	public Student getStudentByMail(String mail) {
 		return studentRepo.findByMail(mail);
 	}
 
+	/**
+	 * Methode renvoi la liste de tous les etudiants
+	 */
 	@Override
 	public List<Student> getAllStudents() {
 		// TODO Auto-generated method stub
 		return (List<Student>) studentRepo.findAll();
 	}
 
+	/**
+	 * methode de suppression d'etudiant
+	 * @param id 
+	 * 
+	 */
 	@Override
 	public void deleteStudent(Long id) {
 		// TODO Auto-generated method stub
@@ -66,12 +89,24 @@ public class StudentServiceImpl implements IStudentService {
 		
 	}
 
+	/**
+	 * Methode de mise a jour des informations des etudiants
+	 * @param etudiant
+	 * @return renvoi l'etudiant 
+	 */
 	@Override
 	public Student updateStudent(Student student) {
 		
 		return studentRepo.save(student);
 		
 	}
+	
+	/**
+	 * Methode de recherche d'etudiant par son prenom et nom
+	 * @param firstName 
+	 * @param lastName
+	 * @return renvoi une liste d'etudiant
+	 */
 
 	@Override
 	public List<Student> searchStudent(String firstName, String lastName) {

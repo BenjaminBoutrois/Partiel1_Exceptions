@@ -11,12 +11,19 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 
+/**
+ * Class Personne qui contient les attributs a heriter dans les classes filles
+ * @author fatim
+ *
+ */
+
 @Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE) //Strategie de creation d'une table unique pour tout enregistrement de type personne et les classes filles 
 @DiscriminatorColumn(name="TYPE_PERSONNE")
 @DiscriminatorValue("PERSONNE")
 public class Personne {
     
+	
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;

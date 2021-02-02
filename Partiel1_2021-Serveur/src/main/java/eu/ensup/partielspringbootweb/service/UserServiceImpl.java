@@ -26,6 +26,11 @@ public class UserServiceImpl  implements IUserService{
 
 
 
+	/**
+	 * Methode de connexion 
+	 * @param user
+	 * @return renvoi l'utilisateur trouver
+	 */
 	@Override
 	public User getUser(User user) {
 		// TODO Auto-generated method stub
@@ -33,6 +38,12 @@ public class UserServiceImpl  implements IUserService{
 		//return null;
 	}
 	
+	/**
+	 * Methoode de creation d'utilisateur
+	 * @param login
+	 * @param password
+	 * @return renvoi l'utilisateur créer
+	 */
 	@Override
 	public User create(String login , String password) {
 		

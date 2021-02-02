@@ -22,8 +22,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 
 /**
- * Classe métier représentant un étudiant.
- * @author 33651
+ * Classe métier représentant un étudiant .
+ * 
  *
  */
 @Entity
@@ -32,11 +32,6 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 public class Student extends Personne
 {
 	
-	/*
-	 * private String firstName; private String lastName; private String
-	 * mailAddress; private String address; private String numberPhone; private
-	 * String birthDate;
-	 */
 	@ManyToMany(fetch = FetchType.EAGER)
 	private Set<Course> courses =  new HashSet<Course>();
 
