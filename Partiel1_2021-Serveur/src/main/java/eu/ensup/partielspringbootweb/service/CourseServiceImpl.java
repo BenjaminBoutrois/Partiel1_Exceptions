@@ -33,19 +33,32 @@ public class CourseServiceImpl  implements ICourseService{
 
 	
 
+	/**
+	 * Methode renvoi la liste de tous les cours
+	 */
 	@Override
 	public List<Course> getAllCourses() {
 		return (List<Course>) courseRepo.findAll();
 	}
 
 
-
+	/**
+	 * Methode de creation de cours
+	 * renvoi le cours créer
+	 */
 	@Override
 	public Course createCourse(Course course) {
 		return courseRepo.save(course);		
 	}
 
 
+	
+
+	/**
+	 * Mthode de recherche d'un cours par son id
+	 * @param prend en parametre id de type Long
+	 * @return renvoi le cours trouver
+	 */
 
 	@Override
 	public Course getCourse(Long id) throws ResourceNotFoundException {
@@ -61,6 +74,12 @@ public class CourseServiceImpl  implements ICourseService{
 	}
 
 
+	/**
+	 * Methode de mise a jour des informations d'un cours
+	 * @param id
+	 * @param course
+	 * @return renvoi le cours
+	 */
 	@Override
 	public Course updateCourse(Long id, Course course) {
 		// TODO Auto-generated method stub
@@ -78,7 +97,11 @@ public class CourseServiceImpl  implements ICourseService{
 		
 	}
 
-
+	/**
+	 * methode de suppression de cours
+	 * @param id 
+	 * 
+	 */
 	@Override
 	public void deleteCourse(Long id) {
 		// TODO Auto-generated method stub
