@@ -41,15 +41,12 @@ public class StudentServiceImpl implements IStudentService {
 		}
 		
 			return stu;
-
-		
 		
 	}
 
 	@Override
 	public Student getStudentByMail(String mail) {
-		return studentRepo.findByMail(mail)
-				;
+		return studentRepo.findByMail(mail);
 	}
 
 	@Override

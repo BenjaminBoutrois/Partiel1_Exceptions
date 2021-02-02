@@ -61,7 +61,8 @@ class PartielspringbootwebApplicationTests {
 		
 		Student gio = new Student(1L, "SIMON","GIOVANNI","giovanni.simon@free.fr","Paris", "0123456789", new Date());
 	
-		Mockito.when(studentRepository.findById(1L).get()).thenReturn(gio);
+		Optional<Student> optional = Optional.of(gio);
+		Mockito.when(studentRepository.findById(1L)).thenReturn(optional);
 		Student  result = studentService.getStudent(1L);
 		if(result != null) {
 			assertEquals(Long.valueOf(1L), result.getId());
@@ -160,8 +161,9 @@ class PartielspringbootwebApplicationTests {
 		
 		Long id = 1L;
 		Course math = new Course("math",12,id);
+		Optional<Course> optional = Optional.of(math);
 	
-		Mockito.when(courseRepository.findById(id).get()).thenReturn(math);
+		Mockito.when(courseRepository.findById(id)).thenReturn(optional);
 		Course  result = courseService.getCourse(1L);
 		if(result != null) {
 			assertEquals(Long.valueOf(1L), result.getIdCourse());
