@@ -12,7 +12,7 @@
 	<%
 		List<Course> listCours = (List<Course>) session.getAttribute("courses");
 	%>
-	<h1>Associé un cour a un etudiant</h1>
+	<h1>Associé un cours a un etudiant</h1>
 	<form action="EtudiantCoursServlet" method="post">
 	<br/><br/>
 	<%
@@ -37,7 +37,7 @@
 		</select>
 			<br/> <br/>
 			<div class="text-center mb-2">
-					<button type="submit" class="btn btn-primary mb-4">Submit</button>
+					<button type="submit" class="btn btn-primary mb-4">Valider</button>
 			</div>
 </div>
 

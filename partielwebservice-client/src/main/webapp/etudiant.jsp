@@ -12,7 +12,7 @@
 	<br /> <br /> <br /> <br /> <br /> <br />
 
 	
-		<a href="etudiantAjout.jsp" class="btn btn-primary mb-4"><i style="color: white"class="fas fa-user-plus"></i> Ajout un étudiant</a>
+		<a href="etudiantAjout.jsp" class="btn btn-primary mb-4"><i style="color: white"class="fas fa-user-plus"></i> Ajout d'un étudiant</a>
 
 	<form action="RechercheEtudiantServlet" method="post">
 
@@ -20,21 +20,23 @@
 
 			<div class="col">
 				<div class="md-form md-outline mt-0">
+					<label for="firstNameR">Prénom</label>
 					<input type="text" id="firstNameR" name="firstNameR"
-						class="form-control" placeholder="Entrer le prénom d'un étudiant"> <label for="firstNameR">Prénom</label>
+						class="form-control" placeholder="Entrer le prénom d'un étudiant"> 
 				</div>
 			</div>
 
 			<div class="col">
 				<div class="md-form md-outline mt-0">
+				<label for="lastNameR">Nom</label>
 					<input type="text" id="lastNameR" name="lastNameR"
-						class="form-control" placeholder="Entrer le nom d'un étudiant"> <label for="lastNameR">Nom</label>
+						class="form-control" placeholder="Entrer le nom d'un étudiant"> 
 				</div>
 			</div>
-
-			<div class="text-center mb-2">
-				<button type="submit" class="btn btn-primary mb-4"> <i style="color: white" class="fas fa-search"></i> Recherche</button>
-			</div>
+			
+				<div class="md-form md-outline mt-0" style="padding-top	:30px">
+					<button type="submit" class="btn btn-primary mb-4"> <i style="color: white" class="fas fa-search"></i> Recherche</button>
+				</div>
 		</div>
 	</form>
 
@@ -59,7 +61,7 @@
 			<thead>
 				<tr>
 
-					<th id="ID" name="ID">id</th>
+					<th id="ID" name="ID">Id</th>
 					<th style="width: 150px;">Prénom</th>
 					<th>Nom</th>
 					<th>E-mail</th>
@@ -95,7 +97,7 @@
 								
 								<a style="padding: 5px; color: #51afca"href="ViewEtudiantServlet?id=<%=student.getId()%>"> <i class="fas fa-eye"></i></a>
 						
-								<a href="EtudiantCoursServlet?id=<%=student.getId()%>" style="color:blue"><i class="fas fa-address-book"></i></a> 
+								<a href="EtudiantCoursServlet?id=<%=student.getId()%>" style="color:#2b3d51"><i class="fas fa-address-book"></i></a> 
 
 					</td>
 				</tr>

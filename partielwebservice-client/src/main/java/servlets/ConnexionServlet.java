@@ -87,7 +87,7 @@ public class ConnexionServlet extends HttpServlet {
 			dispatcher = request.getRequestDispatcher("home.jsp");
 			HttpSession session = request.getSession();
 			String profil;
-			if(userRetour.getProfil() == "D") {
+			if(userRetour.getProfil().equalsIgnoreCase("D")) {
 				profil = "Directeur";
 			}
 			else {

@@ -31,21 +31,21 @@
 				
 					<div class="col">
 						<div class="md-form md-outline mt-0">
-							<label for="firstName">Course Theme</label>
+							<label for="firstName">Libellé cours</label>
 							<input type="text" id="courseTheme" name="courseTheme" class="form-control" value="<%=cours.getThemeCourse()%>"> 
 						</div>
 					</div>
 					
 					<div class="col">
 						<div class="md-form md-outline mt-0">
-							<label for="lastName">Course Time</label>
+							<label for="lastName">Nombre d'heures</label>
 							<input type="text" id="courseTime" name="courseTime" class="form-control" value="<%=cours.getNumberHours()%>"> 
 						</div>
 					</div>
 					
 				</div>
 				<div class="text-center mt-3">
-					<button type="submit" class="btn btn-primary mb-4">Submit</button>
+					<button type="submit" class="btn btn-primary mb-4">Valider</button>
 				</div>
 			</form>
 

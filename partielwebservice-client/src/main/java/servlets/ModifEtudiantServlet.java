@@ -1,8 +1,13 @@
 package servlets;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 import java.util.Date;
 
 import javax.servlet.RequestDispatcher;
@@ -60,14 +65,22 @@ public class ModifEtudiantServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		Student student = new Student(
-				
-				request.getParameter("firstName"), 
-				request.getParameter("lastName"),
-				request.getParameter("mailAdresse"), 
-				request.getParameter("adress"),
-				request.getParameter("numberPhone"),
-				new Date());
+
+		Student student = new Student();
+		try {
+			
+					
+				student.setFirstName(request.getParameter("firstName"));
+				student.setLastName(request.getParameter("lastName"));
+				student.setMail(request.getParameter("mailAdresse"));
+				student.setAddress(request.getParameter("adress"));
+				student.setPhone(request.getParameter("numberPhone"));
+				student.setDob(new SimpleDateFormat("dd-MM-yyyy").parse(request.getParameter("dateOfBirth")));
+					
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		Long idEtudiant = Long.valueOf(request.getParameter("id"));
 

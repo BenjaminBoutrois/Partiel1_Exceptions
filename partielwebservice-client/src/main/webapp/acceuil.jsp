@@ -20,7 +20,7 @@
 							<div class="divider-custom-line"></div>
 						</div>
 						<!-- Masthead Subheading-->
-						<p class="masthead-subheading font-weight-light mb-0">ENSUP Web Application Software - M1 ED2O Prod</p>
+						<p class="masthead-subheading font-weight-light mb-0">ENSUP Web Application Software - M2 ED2O Prod</p>
 					</div>
 				</header>
 			

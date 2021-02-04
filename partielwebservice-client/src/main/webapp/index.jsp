@@ -57,8 +57,8 @@
 							<div class="control-group">
                                 
                                 <div class="form-group floating-label-form-group controls mb-0 pb-2">
-                                    <label>Login</label>
-                                    <input class="form-control" name="login" id="login" type="text" placeholder="Login" required="required" data-validation-required-message="Please enter your login." />
+                                    <label>Identifiant</label>
+                                    <input class="form-control" name="login" id="login" type="text" placeholder="Identifiant" required="required" data-validation-required-message="Please enter your login." />
                                     <p class="help-block text-danger"></p>
                                 </div>
                                 
@@ -67,8 +67,8 @@
                             <div class="control-group">
                                 
                                 <div class="form-group floating-label-form-group controls mb-0 pb-2">
-                                    <label>Password</label>
-                                    <input class="form-control" name="password" id="password" type="password" placeholder="Password" required="required" data-validation-required-message="Please enter your password." />
+                                    <label>Mot de passe</label>
+                                    <input class="form-control" name="password" id="password" type="password" placeholder="Mot de passe" required="required" data-validation-required-message="Please enter your password." />
                                     <p class="help-block text-danger"></p>
                                 </div>
                                 
@@ -77,7 +77,7 @@
                             
                             <br />
                             <div id="success"></div>
-                            <div class="form-group"><button class="btn btn-primary btn-xl" id="sendMessageButton" type="submit">Send</button></div>
+                            <div class="form-group"><button class="btn btn-primary btn-xl" id="sendMessageButton" type="submit">Connexion</button></div>
                         </form>
                     </div>
                 </div>
@@ -89,16 +89,16 @@
                 <div class="row">
                     <!-- Footer Location-->
                     <div class="col-lg-4 mb-5 mb-lg-0">
-                        <h4 class="text-uppercase mb-4">Location</h4>
+                        <h4 class="text-uppercase mb-4">Localisation</h4>
                         <p class="lead mb-0">
-                            36 rue du docteur vaillant
+                            36 rue du Guyancourt
                             <br />
-                            Saint cyr l'école, BP 78210
+                             Ensup l'école, BP 78210
                         </p>
                     </div>
                     <!-- Footer Social Icons-->
                     <div class="col-lg-4 mb-5 mb-lg-0">
-                        <h4 class="text-uppercase mb-4">Around the Web</h4>
+                        <h4 class="text-uppercase mb-4">Autour de ce site</h4>
                         <a class="btn btn-outline-light btn-social mx-1" href="#!"><i class="fab fa-fw fa-facebook-f"></i></a>
                         <a class="btn btn-outline-light btn-social mx-1" href="#!"><i class="fab fa-fw fa-twitter"></i></a>
                         <a class="btn btn-outline-light btn-social mx-1" href="#!"><i class="fab fa-fw fa-linkedin-in"></i></a>
@@ -106,9 +106,9 @@
                     </div>
                     <!-- Footer About Text-->
                     <div class="col-lg-4">
-                        <h4 class="text-uppercase mb-4">About Developper</h4>
+                        <h4 class="text-uppercase mb-4">A propos</h4>
                         <p class="lead mb-0">
-                            Kodzo 0785956809
+                            Groupe 2
                         </p>
                     </div>
                 </div>
@@ -116,7 +116,7 @@
         </footer>
         <!-- Copyright Section-->
         <div class="copyright py-4 text-center text-white">
-            <div class="container"><small>Copyright © Kodzo prod 2020</small></div>
+            <div class="container"><small>Copyright © ENSUP 2021</small></div>
         </div>
         <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes)-->
         <div class="scroll-to-top d-lg-none position-fixed">

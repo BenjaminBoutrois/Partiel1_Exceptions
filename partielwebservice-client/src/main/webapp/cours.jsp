@@ -39,7 +39,7 @@
 			<thead>
 				<tr>
 					<th>#</th>
-					<th>Désignation</th>
+					<th>Cours</th>
 					<th>Heures</th>
 					<th>Actions</th>
 				</tr>

@@ -25,14 +25,14 @@
 				
 					<div class="col">
 						<div class="md-form md-outline mt-0">
-							<label for="firstName">Course Theme</label>
+							<label for="firstName">Libellé cours</label>
 							<input type="text" id="courseTheme" name="courseTheme" class="form-control"> 
 						</div>
 					</div>
 					
 					<div class="col">
 						<div class="md-form md-outline mt-0">
-							<label for="lastName">Course Time</label>
+							<label for="lastName">Nombre d'heures</label>
 							<input type="number" id="courseTime" name="courseTime" class="form-control"> 
 						</div>
 					</div>
@@ -41,7 +41,7 @@
 				
 				<br/> <br/>
 				<div class="text-center mb-2">
-					<button type="submit" class="btn btn-primary mb-4">Submit</button>
+					<button type="submit" class="btn btn-primary mb-4">Valider</button>
 				</div>
 
 			</form>
