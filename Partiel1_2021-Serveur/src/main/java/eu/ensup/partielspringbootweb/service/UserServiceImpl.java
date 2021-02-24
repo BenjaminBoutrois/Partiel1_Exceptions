@@ -1,9 +1,9 @@
 package eu.ensup.partielspringbootweb.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-
-
+import org.springframework.web.server.ResponseStatusException;
 
 import eu.ensup.partielspringbootweb.entities.User;
 import eu.ensup.partielspringbootweb.repositories.UserRepository;
@@ -34,7 +34,12 @@ public class UserServiceImpl  implements IUserService{
 	@Override
 	public User getUser(User user) {
 		// TODO Auto-generated method stub
-		return userRepo.findByLoginAndPassword(user.getLogin(), user.getPassword());
+		User userResult = userRepo.findByLoginAndPassword(user.getLogin(), user.getPassword());
+		
+		if (userResult == null)
+			throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "User not found.");
+		else
+			return userResult;
 		//return null;
 	}
 	

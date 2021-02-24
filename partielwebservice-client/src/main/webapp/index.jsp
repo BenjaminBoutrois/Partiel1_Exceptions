@@ -38,8 +38,22 @@
         <!-- Contact Section-->
         <section class="page-section" id="contact">
             <div class="container">
-                <!-- Contact Section Heading-->
 				<br>
+            <%
+            String error = (String) session.getAttribute("error");
+            if (error != null && !error.equalsIgnoreCase(""))
+            {
+            %>
+
+				<div class="alert alert-danger" role="alert">
+				  <%=error %>
+				</div>
+            
+            <%
+            session.removeAttribute("error");
+            }
+            %>
+                <!-- Contact Section Heading-->
                 <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Authentification</h2>
                 <!-- Icon Divider-->
                 <div class="divider-custom">

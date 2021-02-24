@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import domaine.User;
+import exceptions.UserNotFoundException;
 import service.CoursServiceClient;
 import service.ICoursServiceClient;
 import service.IStudentServiceClient;
@@ -50,6 +51,8 @@ public class ConnexionServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		HttpSession session = request.getSession();
+		session.removeAttribute("error");
 		dispatcher = request.getRequestDispatcher("index.jsp");
 	}
 
@@ -59,7 +62,9 @@ public class ConnexionServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		HttpSession session = request.getSession();
+		session.removeAttribute("error");
+		
 		methode(request, response);
 	}
 
@@ -71,6 +76,7 @@ public class ConnexionServlet extends HttpServlet {
 	 * @throws IOException
 	 */
 	public void methode(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession();
 		
 		User user = new User();
 		user.setLogin(request.getParameter("login"));
@@ -78,34 +84,38 @@ public class ConnexionServlet extends HttpServlet {
 		
 		System.out.println(user.getLogin() + user.getPassword());
 		
-		User userRetour = userService.login(user);
-		System.out.println(userRetour.toString());
-		
-		if (userRetour != null && userRetour.getLogin().equalsIgnoreCase(request.getParameter("login"))
-				&& userRetour.getPassword().equalsIgnoreCase(request.getParameter("password"))) {
+		try
+		{
+			User userRetour = userService.login(user);
 			
-			dispatcher = request.getRequestDispatcher("home.jsp");
-			HttpSession session = request.getSession();
-			String profil;
-			if(userRetour.getProfil().equalsIgnoreCase("D")) {
-				profil = "Directeur";
+			System.out.println(userRetour.toString());
+			
+			if (userRetour != null && userRetour.getLogin().equalsIgnoreCase(request.getParameter("login"))
+					&& userRetour.getPassword().equalsIgnoreCase(request.getParameter("password"))) {
+				
+				dispatcher = request.getRequestDispatcher("home.jsp");
+				String profil;
+				if(userRetour.getProfil().equalsIgnoreCase("D")) {
+					profil = "Directeur";
+				}
+				else {
+					profil = "Responsable";
+				}
+				session.setAttribute("user", userRetour);
+				session.setAttribute("profil", profil);
+				session.setAttribute("students", studentService.getListStudent());
+				session.setAttribute("courses", courseService.getAllCours());
+				
+			} else {
+				dispatcher = request.getRequestDispatcher("index.jsp");
 			}
-			else {
-				profil = "Responsable";
-			}
-			session.setAttribute("user", userRetour);
-			session.setAttribute("profil", profil);
-			session.setAttribute("students", studentService.getListStudent());
-			session.setAttribute("courses", courseService.getAllCours());
-
-		} else {
+		}
+		catch (UserNotFoundException e)
+		{
+			session.setAttribute("error", e.getMessage());
 			dispatcher = request.getRequestDispatcher("index.jsp");
 		}
-		dispatcher.forward(request, response);
 		
+		dispatcher.forward(request, response);
 	}
-
-	
-
-
 }

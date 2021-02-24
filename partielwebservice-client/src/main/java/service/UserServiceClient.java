@@ -1,6 +1,7 @@
 package service;
 
 import java.io.IOException;
+import java.net.ConnectException;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -23,6 +24,8 @@ import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
 
 import domaine.Student;
 import domaine.User;
+import exceptions.CannotReachWebserviceException;
+import exceptions.UserNotFoundException;
 
 public class UserServiceClient implements IUserServiceClient  {
 	
@@ -39,20 +42,26 @@ public class UserServiceClient implements IUserServiceClient  {
 	 * Methode de connexion d'un utilisateur
 	 * @param user
 	 * @return
+	 * @throws UserNotFoundException 
 	 */
 	@Override
-	public User login(User user)  {
-		
+	public User login(User user) throws UserNotFoundException {
 		
 		Client client = ClientBuilder.newClient();
 		WebTarget webTarget = client.target(url).path("login");
 		
 		Response response = webTarget.request("application/json").post(Entity.entity(user, MediaType.APPLICATION_JSON));
-		
 		String output = response.readEntity(String.class);
+		
+		if (response.getStatus() == 401)
+		{
+			throw new UserNotFoundException();
+		}
+		
 		//System.out.println(output);
 		ObjectMapper mapper = new ObjectMapper();
 		User userResponse=null;
+		
 		try {
 			JsonNode jsonNode = mapper.readTree(output);
 			
@@ -67,13 +76,8 @@ public class UserServiceClient implements IUserServiceClient  {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 		return userResponse;
-		
-		
-		  
-		 
-
-		
 	}
 	
 	
