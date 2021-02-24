@@ -1,28 +1,16 @@
 package service;
 
 import java.io.IOException;
-import java.net.ConnectException;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Entity;
-import javax.ws.rs.client.Invocation;
 import javax.ws.rs.client.WebTarget;
-import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-
-import org.glassfish.jersey.client.ClientConfig;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
-
-import domaine.Student;
 import domaine.User;
 import exceptions.UserNotFoundException;
 
@@ -42,6 +30,7 @@ public class UserServiceClient implements IUserServiceClient  {
 	 * @param user
 	 * @return
 	 * @throws UserNotFoundException 
+	 * @throws InternalServerException 
 	 */
 	@Override
 	public User login(User user) throws UserNotFoundException {
@@ -57,7 +46,7 @@ public class UserServiceClient implements IUserServiceClient  {
 			throw new UserNotFoundException();
 		}
 		
-		//System.out.println(output);
+		System.out.println(response);
 		ObjectMapper mapper = new ObjectMapper();
 		User userResponse=null;
 		

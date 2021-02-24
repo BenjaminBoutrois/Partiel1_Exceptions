@@ -24,7 +24,7 @@
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
             <div class="container">
-                <a class="navbar-brand js-scroll-trigger" href="#page-top">GESTION SCOLAIRE</a>
+                <a class="navbar-brand js-scroll-trigger" href="index.jsp">GESTION SCOLAIRE</a>
                 <button class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     Menu
                     <i class="fas fa-bars"></i>
@@ -40,7 +40,7 @@
             <div class="container">
                 <!-- Contact Section Heading-->
 				<br>
-                <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Utilisateur Introuvable</h2>
+                <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Une erreur technique est survenue au niveau du serveur</h2>
                 <!-- Icon Divider-->
                 <div class="divider-custom">
                     <div class="divider-custom-line"></div>

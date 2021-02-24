@@ -174,7 +174,7 @@
 	  <location>/error/ErrorPage500.jsp</location>
 	</error-page>
 	<error-page>
-	  <exception-type>java.lang.NullPointerException</exception-type>
+	  <exception-type>java.net.ConnectException</exception-type>
 	  <location>/error/ErrorPage500.jsp</location>
 	</error-page>
 	

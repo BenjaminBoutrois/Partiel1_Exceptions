@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import domaine.User;
+import exceptions.InternalServerException;
 import exceptions.UserNotFoundException;
 import service.CoursServiceClient;
 import service.ICoursServiceClient;
@@ -79,22 +80,22 @@ public class ConnexionServlet extends HttpServlet {
 		
 		HttpSession session = request.getSession();
 		
-		try {
-		User user = new User();
-		user.setLogin(request.getParameter("login"));
-		user.setPassword(request.getParameter("password"));
-		
-		System.out.println(user.getLogin() + user.getPassword());
-		
 		try
 		{
+			User user = new User();
+			user.setLogin(request.getParameter("login"));
+			user.setPassword(request.getParameter("password"));
+			
+			System.out.println(user.getLogin() + user.getPassword());
+			
 			User userRetour = userService.login(user);
 			
 			System.out.println(userRetour.toString());
 			
 			if (userRetour != null && userRetour.getLogin().equalsIgnoreCase(request.getParameter("login"))
-					&& userRetour.getPassword().equalsIgnoreCase(request.getParameter("password"))) {
-				
+					&& userRetour.getPassword().equalsIgnoreCase(request.getParameter("password")))
+			{
+					
 				dispatcher = request.getRequestDispatcher("home.jsp");
 				String profil;
 				if(userRetour.getProfil().equalsIgnoreCase("D")) {
@@ -107,8 +108,10 @@ public class ConnexionServlet extends HttpServlet {
 				session.setAttribute("profil", profil);
 				session.setAttribute("students", studentService.getListStudent());
 				session.setAttribute("courses", courseService.getAllCours());
-				
-			} else {
+					
+			}
+			else
+			{
 				dispatcher = request.getRequestDispatcher("index.jsp");
 			}
 		}
@@ -117,14 +120,12 @@ public class ConnexionServlet extends HttpServlet {
 			session.setAttribute("error", e.getMessage());
 			dispatcher = request.getRequestDispatcher("index.jsp");
 		}
+		catch (InternalServerException e)
+		{
+			session.setAttribute("error", e.getMessage());
+			dispatcher = request.getRequestDispatcher("ErrorPage500.jsp");
+		}
 
-		dispatcher.forward(request, response);
-		}
-		catch(NullPointerException e) {
-			System.out.println("null");
-			throw new NullPointerException();
-		}
-		
 		dispatcher.forward(request, response);
 	}
 }
