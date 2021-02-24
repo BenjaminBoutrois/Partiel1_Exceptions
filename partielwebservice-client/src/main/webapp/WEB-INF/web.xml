@@ -157,6 +157,23 @@
 		<servlet-class>servlets.CoursServlet</servlet-class>
 	</servlet>
 	
+	<error-page>
+	  <error-code>401</error-code>
+	  <location>/error/ErrorPage401.jsp</location>
+	</error-page>
+	<error-page>
+	  <error-code>403</error-code>
+	  <location>/error/ErrorPage403.jsp</location>
+	</error-page>
+	<error-page>
+	  <error-code>404</error-code>
+	  <location>/error/ErrorPage404.jsp</location>
+	</error-page>
+	<error-page>
+	  <error-code>500</error-code>
+	  <location>/error/ErrorPage500.jsp</location>
+	</error-page>
+	
 	<servlet-mapping>
 		<servlet-name>SupprimerCoursServlet</servlet-name>
 		<url-pattern>/SupprimerCoursServlet</url-pattern>
