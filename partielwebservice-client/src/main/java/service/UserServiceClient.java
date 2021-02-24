@@ -41,7 +41,7 @@ public class UserServiceClient implements IUserServiceClient  {
 	 * @return
 	 */
 	@Override
-	public User login(User user)  {
+	public User login(User user) {
 		
 		
 		Client client = ClientBuilder.newClient();
@@ -65,6 +65,11 @@ public class UserServiceClient implements IUserServiceClient  {
 			e.printStackTrace();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		catch (NullPointerException e) {
+			// TODO Auto-generated catch block
+			System.out.println("Erreur login ou mdp");
 			e.printStackTrace();
 		}
 		return userResponse;

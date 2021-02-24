@@ -70,8 +70,9 @@ public class ConnexionServlet extends HttpServlet {
 	 * @throws ServletException
 	 * @throws IOException
 	 */
-	public void methode(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public void methode(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, NullPointerException {
 		
+		try {
 		User user = new User();
 		user.setLogin(request.getParameter("login"));
 		user.setPassword(request.getParameter("password"));
@@ -102,6 +103,13 @@ public class ConnexionServlet extends HttpServlet {
 			dispatcher = request.getRequestDispatcher("index.jsp");
 		}
 		dispatcher.forward(request, response);
+		}
+		catch(NullPointerException e) {
+			System.out.println("null");
+			//dispatcher = request.getRequestDispatcher("../error/ErrorPage500.jsp");
+			//response.sendRedirect(request.getContextPath() + "/error/ErrorPage401.jsp");
+			throw new NullPointerException();
+		}
 		
 	}
 
