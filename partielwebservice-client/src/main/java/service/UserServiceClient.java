@@ -24,7 +24,6 @@ import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
 
 import domaine.Student;
 import domaine.User;
-import exceptions.CannotReachWebserviceException;
 import exceptions.UserNotFoundException;
 
 public class UserServiceClient implements IUserServiceClient  {
@@ -74,6 +73,11 @@ public class UserServiceClient implements IUserServiceClient  {
 			e.printStackTrace();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		catch (NullPointerException e) {
+			// TODO Auto-generated catch block
+			System.out.println("Erreur login ou mdp");
 			e.printStackTrace();
 		}
 		

@@ -173,6 +173,10 @@
 	  <error-code>500</error-code>
 	  <location>/error/ErrorPage500.jsp</location>
 	</error-page>
+	<error-page>
+	  <exception-type>java.lang.NullPointerException</exception-type>
+	  <location>/error/ErrorPage500.jsp</location>
+	</error-page>
 	
 	<servlet-mapping>
 		<servlet-name>SupprimerCoursServlet</servlet-name>

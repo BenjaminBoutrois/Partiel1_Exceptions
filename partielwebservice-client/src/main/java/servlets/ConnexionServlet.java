@@ -75,9 +75,11 @@ public class ConnexionServlet extends HttpServlet {
 	 * @throws ServletException
 	 * @throws IOException
 	 */
-	public void methode(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public void methode(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, NullPointerException {
+		
 		HttpSession session = request.getSession();
 		
+		try {
 		User user = new User();
 		user.setLogin(request.getParameter("login"));
 		user.setPassword(request.getParameter("password"));
@@ -114,6 +116,13 @@ public class ConnexionServlet extends HttpServlet {
 		{
 			session.setAttribute("error", e.getMessage());
 			dispatcher = request.getRequestDispatcher("index.jsp");
+		}
+
+		dispatcher.forward(request, response);
+		}
+		catch(NullPointerException e) {
+			System.out.println("null");
+			throw new NullPointerException();
 		}
 		
 		dispatcher.forward(request, response);
