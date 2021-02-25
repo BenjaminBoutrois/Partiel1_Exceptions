@@ -37,7 +37,7 @@
         
         <!-- Contact Section-->
         <section class="page-section" id="contact">
-            <div class="container">
+            <div class="container" style="margin-top: 100px;">
                 <!-- Contact Section Heading-->
 				<br>
                 <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Page Introuvable</h2>
