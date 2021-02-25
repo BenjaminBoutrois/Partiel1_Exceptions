@@ -120,12 +120,7 @@ public class ConnexionServlet extends HttpServlet {
 			session.setAttribute("error", e.getMessage());
 			dispatcher = request.getRequestDispatcher("index.jsp");
 		}
-		catch (InternalServerException e)
-		{
-			session.setAttribute("error", e.getMessage());
-			dispatcher = request.getRequestDispatcher("ErrorPage500.jsp");
-		}
-
+		
 		dispatcher.forward(request, response);
 	}
 }
