@@ -34,6 +34,13 @@ public class User extends Personne
 		this.login = login;
 		this.password = password;
 	}
+	
+	public User(Long id, String login, String password)
+	{
+		this.login = login;
+		this.password = password;
+		this.setId(id);
+	}
 
 	public User( String login, String password, String profil)
 	{
