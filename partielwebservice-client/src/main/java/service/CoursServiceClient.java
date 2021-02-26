@@ -40,7 +40,7 @@ public class CoursServiceClient implements ICoursServiceClient  {
 		Client client = ClientBuilder.newClient(clientConfig);		
 		WebTarget webTarget = client.target(url).path("getAll");
 		Response response = webTarget.request("application/json").get();
-		System.out.println("sdfghjkl"+response.getLength());
+		System.out.println("sdfghjkl"+response);
 		List<Course> listeCours = response.readEntity(new GenericType<List<Course>>(){});
 			System.out.println("cours : " +listeCours);
 

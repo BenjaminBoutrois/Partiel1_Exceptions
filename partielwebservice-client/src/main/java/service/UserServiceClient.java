@@ -48,7 +48,9 @@ public class UserServiceClient implements IUserServiceClient  {
 		WebTarget webTarget = client.target(url).path("login");
 		
 		Response response = webTarget.request("application/json").post(Entity.entity(user, MediaType.APPLICATION_JSON));
-		
+	
+		if(response.getStatus()!=200)
+			System.out.println("login error : "+response);
 		String output = response.readEntity(String.class);
 		//System.out.println(output);
 		ObjectMapper mapper = new ObjectMapper();

@@ -41,10 +41,13 @@ public class UserController {
 
 	@PostMapping("/login")
 	public Map<String,User> getUser(@Valid @RequestBody User user) {
-		System.out.println(user.toString());
+		
 		Map<String,User> map = new HashMap<String, User>();
  		User u = userService.getUser(user);
+ 	
+ 		
  		String message = "user";
+ 		
 		
 		map.put(message,u);
 		
