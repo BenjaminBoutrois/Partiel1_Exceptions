@@ -37,24 +37,10 @@
         
         <!-- Contact Section-->
         <section class="page-section" id="contact">
-            <div class="container">
-				<br>
-            <%
-            String error = (String) session.getAttribute("error");
-            if (error != null && !error.equalsIgnoreCase(""))
-            {
-            %>
-
-				<div class="alert alert-danger" role="alert">
-				  <%=error %>
-				</div>
-            
-            <%
-            session.removeAttribute("error");
-            }
-            %>
+            <div class="container" style="margin-top: 100px;">
                 <!-- Contact Section Heading-->
-                <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Authentification</h2>
+				<br>
+                <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Page Introuvable</h2>
                 <!-- Icon Divider-->
                 <div class="divider-custom">
                     <div class="divider-custom-line"></div>
@@ -62,39 +48,6 @@
                     <div class="divider-custom-line"></div>
                 </div>
                 <!-- Contact Section Form-->
-                <div class="row">
-                    <div class="col-lg-8 mx-auto">
-                        <!-- To configure the contact form email address, go to mail/contact_me.php and update the email address in the PHP file on line 19.-->
-                        
-                        <form action="ConnexionServlet" method="post" >
-                            
-							<div class="control-group">
-                                
-                                <div class="form-group floating-label-form-group controls mb-0 pb-2">
-                                    <label>Identifiant</label>
-                                    <input class="form-control" name="login" id="login" type="text" placeholder="Identifiant" required="required" data-validation-required-message="Please enter your login." />
-                                    <p class="help-block text-danger"></p>
-                                </div>
-                                
-                            </div>
-                            
-                            <div class="control-group">
-                                
-                                <div class="form-group floating-label-form-group controls mb-0 pb-2">
-                                    <label>Mot de passe</label>
-                                    <input class="form-control" name="password" id="password" type="password" placeholder="Mot de passe" required="required" data-validation-required-message="Please enter your password." />
-                                    <p class="help-block text-danger"></p>
-                                </div>
-                                
-                            </div>
-                            
-                            
-                            <br />
-                            <div id="success"></div>
-                            <div class="form-group"><button class="btn btn-primary btn-xl" id="sendMessageButton" type="submit">Connexion</button></div>
-                        </form>
-                    </div>
-                </div>
             </div>
         </section>
         <!-- Footer-->

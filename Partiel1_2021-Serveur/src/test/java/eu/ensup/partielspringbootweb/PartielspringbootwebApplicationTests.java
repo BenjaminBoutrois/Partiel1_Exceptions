@@ -21,6 +21,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import eu.ensup.partielspringbootweb.config.ResourceNotFoundException;
 import eu.ensup.partielspringbootweb.entities.Course;
 import eu.ensup.partielspringbootweb.entities.Student;
+import eu.ensup.partielspringbootweb.entities.User;
 import eu.ensup.partielspringbootweb.repositories.CourseRepository;
 import eu.ensup.partielspringbootweb.repositories.StudentRepository;
 import eu.ensup.partielspringbootweb.repositories.UserRepository;
@@ -44,9 +45,15 @@ class PartielspringbootwebApplicationTests {
 	@InjectMocks
 	private CourseServiceImpl courseService;
 	
+	@Mock
+	private UserRepository userRepository;
+	
+	@InjectMocks
+	private UserServiceImpl userService;
+	
 	@Before
 	public void setup(){
-		MockitoAnnotations.initMocks(this);
+		MockitoAnnotations.openMocks(this);
 	}
 
 	
@@ -153,7 +160,8 @@ class PartielspringbootwebApplicationTests {
 		Mockito.when(courseRepository.save(math)).thenReturn(math);
 		
 		Course result = courseService.updateCourse(math.getIdCourse(), math);
-		Mockito.verify(courseRepository).save(result);
+		Mockito.verify(courseRepository).save(math);
+		assertEquals(result,math);
 	}
 	
 	@Test
@@ -169,6 +177,38 @@ class PartielspringbootwebApplicationTests {
 			assertEquals(Long.valueOf(1L), result.getIdCourse());
 
 		}
+		
+	}
+	
+/////USER////////////////////////////////////////////////
+	
+	@Test
+	public void testGetByIdUser(){
+		
+		User gio = new User(1L, "adm","adm");
+	
+		Optional<User> optional = Optional.of(gio);
+		Mockito.when(userRepository.findById(1L)).thenReturn(optional);
+		User  result = userService.getUser(1L);
+		
+		if(result != null) {
+			assertEquals(Long.valueOf(1L), result.getId());
+		}
+		
+		Mockito.verify(userRepository).findById(1L);
+		
+	}
+	
+	@Test
+	public void testCreateUser(){
+		
+		User gio = new User(1L, "adm","adm");
+		when(userRepository.save(gio)).thenReturn(gio);
+		User result = userService.create(gio);
+		
+		assertEquals(Long.valueOf(1L), result.getId());
+		
+		Mockito.verify(userRepository).save(gio);
 		
 	}
 	

@@ -1,6 +1,7 @@
 package service;
 
 import domaine.User;
+import exceptions.UserNotFoundException;
 
 public interface IUserServiceClient {
 
@@ -9,7 +10,7 @@ public interface IUserServiceClient {
 	 * @param user
 	 * @return
 	 */
-	User login(User user);
+	User login(User user) throws UserNotFoundException;
 
 	/**
 	 * Methode pour recuperer un user

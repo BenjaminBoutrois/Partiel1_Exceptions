@@ -83,17 +83,16 @@ public class CourseServiceImpl  implements ICourseService{
 	@Override
 	public Course updateCourse(Long id, Course course) {
 		// TODO Auto-generated method stub
-		Optional<Course> c = courseRepo.findById(id);
 		
 		Course cours = null;
-		Optional<Course> studentFound  = courseRepo.findById(id);
-		if(studentFound.isPresent()) {
-			cours = studentFound.get();
+		Optional<Course> courseFound  = courseRepo.findById(id);
+		if(courseFound.isPresent()) {
+			cours = courseFound.get();
 			cours.setNumberHours(course.getNumberHours());
 			cours.setThemeCourse(course.getThemeCourse());
 			
 			}
-		return courseRepo.save(cours);
+		return courseRepo.save(course);
 		
 	}
 
