@@ -52,7 +52,7 @@ public class UserServiceTest {
 	
 	@BeforeEach
 	public void setupForEach(){
-		User gio = new User(1L, "adm","adm");
+		 gio = new User(1L, "adm","adm");
 	}
 	
 /////USER////////////////////////////////////////////////
