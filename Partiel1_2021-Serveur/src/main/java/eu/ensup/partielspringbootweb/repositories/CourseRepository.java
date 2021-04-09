@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 import eu.ensup.partielspringbootweb.entities.Course;
 
 @Repository
-public interface CourseRepository  extends CrudRepository<Course, Long>{
+public interface CourseRepository extends CrudRepository<Course, Long>
+{
 
 }

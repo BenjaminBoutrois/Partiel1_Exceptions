@@ -23,65 +23,69 @@ import eu.ensup.partielspringbootweb.service.StudentServiceImpl;
 import eu.ensup.partielspringbootweb.service.UserServiceImpl;
 
 @SpringBootTest
-public class UserServiceTest {
-	
+public class UserServiceTest
+{
 	@Mock
 	private StudentRepository studentRepository;
-	
+
 	@InjectMocks
 	private StudentServiceImpl studentService;
-	
+
 	@Mock
 	private CourseRepository courseRepository;
-	
+
 	@InjectMocks
 	private CourseServiceImpl courseService;
-	
+
 	@Mock
 	private UserRepository userRepository;
-	
+
 	@InjectMocks
 	private UserServiceImpl userService;
-	
+
 	@Before
-	public void setup(){
+	public void setup()
+	{
 		MockitoAnnotations.openMocks(this);
 	}
-	
+
 	User gio;
-	
+
 	@BeforeEach
-	public void setupForEach(){
-		 gio = new User(1L, "adm","adm");
+	public void setupForEach()
+	{
+		gio = new User(1L, "adm", "adm");
 	}
-	
+
 /////USER////////////////////////////////////////////////
-	
+
 	@Test
-	public void testGetByIdUser(){
-	
+	public void testGetByIdUser()
+	{
 		Optional<User> optional = Optional.of(gio);
-		Mockito.when(userRepository.findById(1L)).thenReturn(optional);
-		User  result = userService.getUser(1L);
 		
-		if(result != null) {
+		Mockito.when(userRepository.findById(1L)).thenReturn(optional);
+		
+		User result = userService.getUser(1L);
+
+		if (result != null)
+		{
 			assertEquals(Long.valueOf(1L), result.getId());
 		}
-		
+
 		Mockito.verify(userRepository).findById(1L);
-		
 	}
-	
+
 	@Test
-	public void testCreateUser(){
-		
+	public void testCreateUser()
+	{
 		when(userRepository.save(gio)).thenReturn(gio);
+		
 		User result = userService.create(gio);
-		
+
 		assertEquals(Long.valueOf(1L), result.getId());
-		
+
 		Mockito.verify(userRepository).save(gio);
-		
 	}
 
 }

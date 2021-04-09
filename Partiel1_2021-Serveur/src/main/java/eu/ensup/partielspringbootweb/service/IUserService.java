@@ -1,9 +1,6 @@
 package eu.ensup.partielspringbootweb.service;
 
-import com.fasterxml.jackson.databind.node.ObjectNode;
-
 import eu.ensup.partielspringbootweb.entities.User;
-
 
 public interface IUserService
 {
@@ -15,10 +12,10 @@ public interface IUserService
 	 * @return L'utilisateur correspondant au login et mot de passe.
 	 */
 	User getUser(User user);
-	
+
 	User getUser(Long id);
 
 	User create(String login, String password);
-	
+
 	User create(User user);
 }

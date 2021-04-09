@@ -24,89 +24,101 @@ import eu.ensup.partielspringbootweb.repositories.StudentRepository;
 import eu.ensup.partielspringbootweb.service.StudentServiceImpl;
 
 @SpringBootTest
-class StudentServiceTest {
-
-	
+class StudentServiceTest
+{
 	@Mock
 	private StudentRepository studentRepository;
-	
+
 	@InjectMocks
 	private StudentServiceImpl studentService;
-	
+
 	@Before
-	public void setup(){
+	public void setup()
+	{
 		MockitoAnnotations.openMocks(this);
 	}
 
-	
-	
 	Course coursTest = new Course();
-	
-	
-	/////ETUDIANT////////////////////////////////////////////////
-	
+
+	///// ETUDIANT////////////////////////////////////////////////
+
 	@Test
-	public void testGetByIdStudent() throws ResourceNotFoundException  {
-		
-		Student gio = new Student(1L, "SIMON","GIOVANNI","giovanni.simon@free.fr","Paris", "0123456789", new Date());
-	
+	public void testGetByIdStudent() throws ResourceNotFoundException
+	{
+		Student gio = new Student(1L, "SIMON", "GIOVANNI", "giovanni.simon@free.fr", "Paris", "0123456789", new Date());
+
 		Optional<Student> optional = Optional.of(gio);
+		
 		when(studentRepository.findById(1L)).thenReturn(optional);
-		Student  result = studentService.getStudent(1L);
-		if(result != null) {
+		
+		Student result = studentService.getStudent(1L);
+		
+		if (result != null)
+		{
 			assertEquals(Long.valueOf(1L), result.getId());
 
 		}
+		
 		verify(studentRepository).findById(1L);
-		
 	}
-	
+
 	@Test
-	public void testDeleteStudent()  {
+	public void testDeleteStudent()
+	{
+		Student gio = new Student(1L, "SIMON", "GIOVANNI", "giovanni.simon@free.fr", "Paris", "0123456789", new Date());
 		
-		Student gio = new Student(1L, "SIMON","GIOVANNI","giovanni.simon@free.fr","Paris", "0123456789", new Date());
 		when(studentRepository.findById(gio.getId())).thenReturn(Optional.of(gio));
+		
 		studentService.deleteStudent(gio.getId());
-        verify(studentRepository).delete(gio);
-	}	
-	
-	@Test
-	public void saveStudent(){
-		Student gio = new Student(1L, "SIMON","TIMA","giovanni.simon@free.fr","Paris", "0123456789", new Date());
-		when(studentRepository.save(gio)).thenReturn(gio);
-		Student result = studentService.createStudent(gio);
-		assertEquals(Long.valueOf(1L), result.getId());
-		verify(studentRepository).save(gio);
 		
+		verify(studentRepository).delete(gio);
 	}
-	
+
 	@Test
-	public void testGetAllStudent(){
-		List<Student> list = new ArrayList<Student>();
-	
-		list.add(new Student(1L, "SIMON","TIMA","giovanni.simon@free.fr","Paris", "0123456789", new Date()));
-		list.add(new Student(2L, "SIMON","GIIIIII","giovanni.simon@free.fr","Paris", "0123456789", new Date()));
-		when(studentRepository.findAll()).thenReturn(list);
+	public void saveStudent()
+	{
+		Student gio = new Student(1L, "SIMON", "TIMA", "giovanni.simon@free.fr", "Paris", "0123456789", new Date());
 		
+		when(studentRepository.save(gio)).thenReturn(gio);
+		
+		Student result = studentService.createStudent(gio);
+		
+		assertEquals(Long.valueOf(1L), result.getId());
+		
+		verify(studentRepository).save(gio);
+	}
+
+	@Test
+	public void testGetAllStudent()
+	{
+		List<Student> list = new ArrayList<Student>();
+
+		list.add(new Student(1L, "SIMON", "TIMA", "giovanni.simon@free.fr", "Paris", "0123456789", new Date()));
+		list.add(new Student(2L, "SIMON", "GIIIIII", "giovanni.simon@free.fr", "Paris", "0123456789", new Date()));
+		
+		when(studentRepository.findAll()).thenReturn(list);
+
 		List<Student> result = studentService.getAllStudents();
+		
 		assertEquals(2, result.size());
+		
 		verify(studentRepository).findAll();
 	}
-	
-	
+
 	@Test
-	public void studentUpdateCheck() {
-		Student gio = new Student(1L, "SIMON","TIMA","giovanni.simon@free.fr","Paris", "0123456789", new Date());
+	public void studentUpdateCheck()
+	{
+		Student gio = new Student(1L, "SIMON", "TIMA", "giovanni.simon@free.fr", "Paris", "0123456789", new Date());
 
 		when(studentRepository.findById(gio.getId())).thenReturn(Optional.of(gio));
+		
 		Student result = studentService.updateStudent(gio);
-		Assumptions.assumingThat(result!= null,
-				() ->{
-					assertEquals(result, gio);
-				});
+		
+		Assumptions.assumingThat(result != null, () ->
+		{
+			assertEquals(result, gio);
+		});
+		
 		verify(studentRepository).save(gio);
 	}
-	
-	
-	
 }

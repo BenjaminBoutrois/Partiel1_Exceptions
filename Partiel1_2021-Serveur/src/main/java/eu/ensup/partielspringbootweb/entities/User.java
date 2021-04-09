@@ -3,9 +3,6 @@ package eu.ensup.partielspringbootweb.entities;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 
 /**
  * Classe métier représentant un utilisateur.
@@ -17,10 +14,9 @@ import javax.persistence.Id;
 @DiscriminatorValue("USER")
 public class User extends Personne
 {
-	
-	@Column(name="login")
+	@Column(name = "login")
 	private String login;
-	@Column(name="password")
+	@Column(name = "password")
 	private String password;
 	private String profil;
 
@@ -34,7 +30,7 @@ public class User extends Personne
 		this.login = login;
 		this.password = password;
 	}
-	
+
 	public User(Long id, String login, String password)
 	{
 		this.login = login;
@@ -42,15 +38,13 @@ public class User extends Personne
 		this.setId(id);
 	}
 
-	public User( String login, String password, String profil)
+	public User(String login, String password, String profil)
 	{
 		super();
 		this.login = login;
 		this.password = password;
 		this.profil = profil;
 	}
-
-	
 
 	public String getLogin()
 	{

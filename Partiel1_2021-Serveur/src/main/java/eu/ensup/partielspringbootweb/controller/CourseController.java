@@ -18,67 +18,61 @@ import org.springframework.web.bind.annotation.RestController;
 
 import eu.ensup.partielspringbootweb.config.ResourceNotFoundException;
 import eu.ensup.partielspringbootweb.entities.Course;
-import eu.ensup.partielspringbootweb.entities.Student;
 import eu.ensup.partielspringbootweb.service.ICourseService;
 
 @RestController
 @CrossOrigin
 @RequestMapping("/course")
-public class CourseController {
-
-	
-	@Autowired 
+public class CourseController
+{
+	@Autowired
 	private ICourseService courseService;
 
 	/**
 	 * @param courseService
 	 */
-	public CourseController(ICourseService courseService) {
+	public CourseController(ICourseService courseService)
+	{
 		System.out.println("+++++++++++++++++++ Init course controller+++++++++++++++++");
 
 		this.courseService = courseService;
 	}
-	
-	@GetMapping(value="/getAll",produces = {"application/json"})
-	public List<Course> getAllCourses(){
+
+	@GetMapping(value = "/getAll", produces =
+	{ "application/json" })
+	public List<Course> getAllCourses()
+	{
 		System.out.println("+++++++++++++++ GetAll +++++++++++++");
-		
+
 		return courseService.getAllCourses();
-		
 	}
-	
-	@GetMapping(value="/detail/{id}")
-	public Course getCourseById(@PathVariable(value = "id") Long id) throws ResourceNotFoundException {
-		
+
+	@GetMapping(value = "/detail/{id}")
+	public Course getCourseById(@PathVariable(value = "id") Long id) throws ResourceNotFoundException
+	{
 		return courseService.getCourse(id);
 	}
-	
-	
 
-	
 	@PostMapping("/create")
-	public void createCourse(@Valid @RequestBody Course course) {
-		System.out.println("++++++++++++ REquestBody +++++++++++: "+ course);
-		
+	public void createCourse(@Valid @RequestBody Course course)
+	{
+		System.out.println("++++++++++++ REquestBody +++++++++++: " + course);
+
 		courseService.createCourse(course);
 	}
-	
+
 	@DeleteMapping("/delete/{id}")
-	public void deleteCourse(@PathVariable(value = "id") Long id) {
-		
+	public void deleteCourse(@PathVariable(value = "id") Long id)
+	{
 		courseService.deleteCourse(id);
-		
 	}
-	
+
 	@PutMapping("/update/{id}")
-	public ResponseEntity<Course> updateCourse(@PathVariable(value = "id") Long id, @Valid @RequestBody Course course) throws ResourceNotFoundException {
-		
+	public ResponseEntity<Course> updateCourse(@PathVariable(value = "id") Long id, @Valid @RequestBody Course course)
+			throws ResourceNotFoundException
+	{
 		final Course updatedCoure = courseService.updateCourse(id, course);
+
 		return ResponseEntity.ok(updatedCoure);
 	}
-	
-	
-	
-	
-	
 }
