@@ -6,16 +6,18 @@ import javax.ws.rs.core.Response;
 
 import domaine.Course;
 
-public interface ICoursServiceClient {
-
+public interface ICoursServiceClient
+{
 	/**
 	 * Methode pour recupere la liste des cours
+	 * 
 	 * @return
 	 */
 	List<Course> getAllCours();
 
 	/**
 	 * Methode pour rechercher un cours par son id
+	 * 
 	 * @param id
 	 * @return
 	 */
@@ -23,6 +25,7 @@ public interface ICoursServiceClient {
 
 	/**
 	 * Methode pour créer un cours
+	 * 
 	 * @param cours
 	 * @return
 	 */
@@ -30,6 +33,7 @@ public interface ICoursServiceClient {
 
 	/**
 	 * Methode pour modifie un cours
+	 * 
 	 * @param id
 	 * @param cours
 	 * @return
@@ -38,9 +42,9 @@ public interface ICoursServiceClient {
 
 	/**
 	 * Methode pour supprimer un cours
+	 * 
 	 * @param id
 	 * @return
 	 */
 	Response deleteCours(Long id);
-
 }

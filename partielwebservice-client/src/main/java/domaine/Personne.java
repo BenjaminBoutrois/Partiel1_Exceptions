@@ -2,8 +2,8 @@ package domaine;
 
 import java.util.Date;
 
-public class Personne {
-	
+public class Personne
+{
 	private Long id;
 	private String firstName;
 	private String lastName;
@@ -11,10 +11,9 @@ public class Personne {
 	private String address;
 	private String phone;
 	private Date dob;
-	
-	
 
-	public Personne(String firstName, String lastName, String mail, String address, String phone, Date dob) {
+	public Personne(String firstName, String lastName, String mail, String address, String phone, Date dob)
+	{
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -24,64 +23,77 @@ public class Personne {
 		this.dob = dob;
 	}
 
-	public Personne() {
+	public Personne()
+	{
 	}
 
-	public Long getId() {
+	public Long getId()
+	{
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(Long id)
+	{
 		this.id = id;
 	}
 
-	public String getFirstName() {
+	public String getFirstName()
+	{
 		return firstName;
 	}
 
-	public void setFirstName(String firstName) {
+	public void setFirstName(String firstName)
+	{
 		this.firstName = firstName;
 	}
 
-	public String getLastName() {
+	public String getLastName()
+	{
 		return lastName;
 	}
 
-	public void setLastName(String lastName) {
+	public void setLastName(String lastName)
+	{
 		this.lastName = lastName;
 	}
 
-	public String getMail() {
+	public String getMail()
+	{
 		return mail;
 	}
 
-	public void setMail(String mail) {
+	public void setMail(String mail)
+	{
 		this.mail = mail;
 	}
 
-	public String getAddress() {
+	public String getAddress()
+	{
 		return address;
 	}
 
-	public void setAddress(String address) {
+	public void setAddress(String address)
+	{
 		this.address = address;
 	}
 
-	public String getPhone() {
+	public String getPhone()
+	{
 		return phone;
 	}
 
-	public void setPhone(String phone) {
+	public void setPhone(String phone)
+	{
 		this.phone = phone;
 	}
 
-	public Date getDob() {
+	public Date getDob()
+	{
 		return dob;
 	}
 
-	public void setDob(Date dob) {
+	public void setDob(Date dob)
+	{
 		this.dob = dob;
 	}
-	
-
 }

@@ -2,6 +2,8 @@ package exceptions;
 
 public class InternalServerException extends ServiceException
 {
+	private static final long serialVersionUID = 1L;
+
 	public InternalServerException()
 	{
 		super("Une erreur technique est survenue au niveau du serveur.");

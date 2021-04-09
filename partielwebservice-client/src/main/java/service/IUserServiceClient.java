@@ -3,10 +3,11 @@ package service;
 import domaine.User;
 import exceptions.UserNotFoundException;
 
-public interface IUserServiceClient {
-
+public interface IUserServiceClient
+{
 	/**
 	 * Methode de connexion d'un utilisateur
+	 * 
 	 * @param user
 	 * @return
 	 */
@@ -14,8 +15,8 @@ public interface IUserServiceClient {
 
 	/**
 	 * Methode pour recuperer un user
+	 * 
 	 * @return
 	 */
 	User getUser();
-
 }

@@ -1,7 +1,6 @@
 package servlets;
 
 import java.io.IOException;
-import java.util.Date;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,30 +11,32 @@ import javax.servlet.http.HttpSession;
 import javax.ws.rs.core.Response;
 
 import domaine.Course;
-import domaine.Student;
-import domaine.User;
 import service.CoursServiceClient;
 import service.ICoursServiceClient;
-import service.IStudentServiceClient;
 
 /**
  * Servlet implementation class AjoutCoursServlet
  */
-public class AjoutCoursServlet extends HttpServlet {
+public class AjoutCoursServlet extends HttpServlet
+{
 	private static final long serialVersionUID = 1L;
 	private RequestDispatcher dispatcher = null;
 	private ICoursServiceClient courseService;
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public AjoutCoursServlet() {
-        courseService = new CoursServiceClient();
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public AjoutCoursServlet()
+	{
+		courseService = new CoursServiceClient();
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
+	{
 		HttpSession session = request.getSession();
 		session.setAttribute("message", null);
 		dispatcher = request.getRequestDispatcher("coursAjout.jsp");
@@ -43,30 +44,30 @@ public class AjoutCoursServlet extends HttpServlet {
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
+	{
 		int nbHeure = Integer.valueOf(request.getParameter("courseTime"));
-		Course cours = new Course(request.getParameter("courseTheme"),nbHeure);		
+		Course cours = new Course(request.getParameter("courseTheme"), nbHeure);
+		
 		HttpSession session = request.getSession();
-		//session.setAttribute("cours", null);
-		//user = (User) session.getAttribute("user");
-		
+		// session.setAttribute("cours", null);
+		// user = (User) session.getAttribute("user");
+
 		System.out.println(cours.getNumberHours());
-		
+
 		Response responseFromService = courseService.createCours(cours);
-		if (responseFromService.getStatus()==200 || responseFromService.getStatus()==204) {
+		
+		if (responseFromService.getStatus() == 200 || responseFromService.getStatus() == 204)
 			session.setAttribute("message", "Elément enregistré avec succès");
-		} else {
+		else
 			session.setAttribute("message", "Un problème est survenu. Veuillez réessayer.");
-		}
-		
+
 		session.setAttribute("courses", courseService.getAllCours());
-		
+
 		dispatcher = request.getRequestDispatcher("cours.jsp");
 		dispatcher.forward(request, response);
-
 	}
-
 }

@@ -15,35 +15,42 @@ import service.ICoursServiceClient;
 /**
  * Servlet implementation class EditerCoursServlet
  */
-public class EditerCoursServlet extends HttpServlet {
+public class EditerCoursServlet extends HttpServlet
+{
 	private static final long serialVersionUID = 1L;
 	private ICoursServiceClient coursService;
 	private RequestDispatcher dispatcher = null;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public EditerCoursServlet() {
-    	coursService = new CoursServiceClient();
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public EditerCoursServlet()
+	{
+		coursService = new CoursServiceClient();
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
+	{
 		methode(request, response);
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-	}
-	
-	public void methode(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
+	{
 
+	}
+
+	public void methode(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
+	{
 		HttpSession session = request.getSession();
+		
 		String object = request.getParameter("id");
 		Long id = Long.valueOf(object);
 
@@ -53,5 +60,4 @@ public class EditerCoursServlet extends HttpServlet {
 
 		dispatcher.forward(request, response);
 	}
-
 }

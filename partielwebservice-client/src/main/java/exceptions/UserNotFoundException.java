@@ -2,6 +2,8 @@ package exceptions;
 
 public class UserNotFoundException extends ServiceException
 {
+	private static final long serialVersionUID = 1L;
+
 	public UserNotFoundException()
 	{
 		super("Login et/ou mot de passe incorrect(s).");
