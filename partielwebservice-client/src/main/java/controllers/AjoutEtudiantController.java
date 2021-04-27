@@ -21,7 +21,7 @@ import service.IStudentServiceClient;
 import service.StudentServiceClient;
 
 @Controller
-@RequestMapping("AjoutEtudiant")
+@RequestMapping("/AjoutEtudiant")
 public class AjoutEtudiantController
 {
 	private IStudentServiceClient studentService;

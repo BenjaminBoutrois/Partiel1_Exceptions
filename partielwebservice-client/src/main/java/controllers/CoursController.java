@@ -13,7 +13,7 @@ import service.CoursServiceClient;
 import service.ICoursServiceClient;
 
 @Controller
-@RequestMapping("Cours")
+@RequestMapping("/Cours")
 public class CoursController
 {
 	private ICoursServiceClient courseService;

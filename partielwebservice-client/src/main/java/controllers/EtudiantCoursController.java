@@ -22,7 +22,7 @@ import service.IStudentServiceClient;
 import service.StudentServiceClient;
 
 @Controller
-@RequestMapping("EtudiantCours")
+@RequestMapping("/EtudiantCours")
 public class EtudiantCoursController
 {
 	private IStudentServiceClient studentService;

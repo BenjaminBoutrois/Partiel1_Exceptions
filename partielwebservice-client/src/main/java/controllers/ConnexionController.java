@@ -22,7 +22,7 @@ import service.StudentServiceClient;
 import service.UserServiceClient;
 
 @Controller
-@RequestMapping("Connexion")
+@RequestMapping("/Connexion")
 public class ConnexionController
 {
 	private IUserServiceClient userService;

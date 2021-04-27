@@ -17,7 +17,7 @@ import service.CoursServiceClient;
 import service.ICoursServiceClient;
 
 @Controller
-@RequestMapping("SupprimerCours")
+@RequestMapping("/SupprimerCours")
 public class SupprimerCoursController
 {
 	private RequestDispatcher dispatcher = null;

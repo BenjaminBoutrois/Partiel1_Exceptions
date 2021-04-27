@@ -15,7 +15,7 @@ import service.CoursServiceClient;
 import service.ICoursServiceClient;
 
 @Controller
-@RequestMapping("ModifCours")
+@RequestMapping("/ModifCours")
 public class ModifCoursController
 {
 	private ICoursServiceClient coursService;

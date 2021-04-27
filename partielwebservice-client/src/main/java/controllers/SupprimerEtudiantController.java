@@ -17,7 +17,7 @@ import service.IStudentServiceClient;
 import service.StudentServiceClient;
 
 @Controller
-@RequestMapping("SupprimerEtudiant")
+@RequestMapping("/SupprimerEtudiant")
 public class SupprimerEtudiantController
 {
 	private IStudentServiceClient studentService;
