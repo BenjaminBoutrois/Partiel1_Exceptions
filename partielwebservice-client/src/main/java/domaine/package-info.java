@@ -1,8 +1,0 @@
-/**
- * 
- */
-/**
- * @author jules
- *
- */
-package domaine;
